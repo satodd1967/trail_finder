@@ -1,0 +1,27 @@
+Plan your gem imagine your interface
+Start with the project structure - google
+Start with the entry point - file run
+Force that to build the CLI interface
+Stub out the interface
+Start making things real
+Discover Objects
+Program
+
+
+- A command line interface to get trails and trail details that are in the geographic area that you specify
+
+Welcomes the user
+  Tells the rider that Ride Hard Crash Less is tool that allows a rider to provide a major US city and surrounding area and get back all of the mountain bike trails in that area
+  Provides the rider with a list of most popular cities with an option to choose one of those cities
+  Allows a rider to enter a major US city and a surrounding distance in miles to search within
+
+Returns a numerical list sorted by popularity of all trails based on the riders parameters
+
+Promts the rider to choose an item from the list
+
+Returns the details of that trail
+
+Prompts the rider to either exit, search by different parameters, return to the numerical list
+  exit returns to the welcome Prompt
+  new search retruns to a modified welcome prompt that only asks for parameters
+  return to the list returns a list based on prior search parameters
