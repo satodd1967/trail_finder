@@ -7,6 +7,7 @@ class TrailFinder::CLI
         intro
         popular_cities
         getinfo
+        over
     end
 
     #puts intro script to the rider
@@ -24,9 +25,38 @@ class TrailFinder::CLI
         puts "City4"
     end
 
-    #defines the menue and asks the rider for an input
-    def getinfo
-        puts "Where would you like to ride?"
+    def where_now
+        puts "Would you like to find more trails?"
+        pupular cities
+        puts "Choose another popular city or enter a new city to search"
     end
 
+    #defines the menue and asks the rider for an input
+    def getinfo
+        input1 = nil
+        while input1 != "exit"
+        puts "Where would you like to ride? Type exit to hit the trails"
+            input1 = gets.strip.downcase
+            case input1
+            when "1"
+                puts "Trails for city 1"
+            when "2"
+                puts "Trails for City 2"
+            when "3"
+                puts "Trails for City 3"
+            when "4"
+                puts "Trails for City 4"
+            when "5"
+                puts "Trails for City 5"
+            when "city"
+                puts "How far from your city would you like to search"
+                input2 = gets.strip.downcase
+                puts "Trails within #{input2} of #{input1}"
+            end
+        end
+    end
+
+    def over
+        puts "Thanks for riding with us today!"
+    end
 end
