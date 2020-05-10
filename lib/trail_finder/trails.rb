@@ -1,5 +1,7 @@
 require "nokogiri"
 require "open-uri"
+require "json"
+require "pry"
 
 # doc = Nokogiri::HTML(open("https://www.mtbproject.com/data/get-trails?lat=33.124&lon=-117.080&maxDistance=10&key=200752494-3cc116808ab25b0826c7c50c3d42c825"))
 # puts doc
@@ -9,5 +11,17 @@ require "open-uri"
     # distance = 5
     # api_call = "https://www.mtbproject.com/data/get-trails?lat=#{lat}&lon=#{lon}&maxDistance=#{distance}&key=200752494-3cc116808ab25b0826c7c50c3d42c825"
     # doc = Nokogiri::HTML(open(api_call))
-    # puts doc
+    # new_doc = JSON.parse(doc)
+    # puts new_doc.collect {|trails| trails}.first
+    
+    def get_trails
+        lat = 33.124
+        lon = -117.080
+        distance = 5
+        api_call = "https://www.mtbproject.com/data/get-trails?lat=#{lat}&lon=#{lon}&maxDistance=#{distance}&key=200752494-3cc116808ab25b0826c7c50c3d42c825"
+        doc = Nokogiri::HTML(open(api_call))
+        new_doc = JSON.parse(doc)
+        binding.pry
+    end
+
     
