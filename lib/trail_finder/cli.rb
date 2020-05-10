@@ -5,7 +5,7 @@ class TrailFinder::CLI
     #main method runs the program
     def call
         intro
-        popular_cities
+        featured_cities
         getinfo
         over
     end
@@ -23,18 +23,19 @@ class TrailFinder::CLI
     end
 
 
-    #gets the list of most popular cities and puts them to the terminal
-    def popular_cities
+    #gets the list of most featured cities and puts them to the terminal
+    def featured_cities
         puts "City1"
         puts "City2"
         puts "City3"
         puts "City4"
     end
 
+    #provides an alternative message on the second loop
     def where_now
         puts "Would you like to find more trails?"
         puts " "
-        popular_cities
+        featured_cities
         puts " "
         puts "Choose another popular city or enter a new city to search"
     end
