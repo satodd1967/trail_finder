@@ -42,9 +42,9 @@ class TrailFinder::CLI
         puts "Choose another popular city or enter a new city to search"
     end
 
-    def get_trails
+    def get_trails_cli
     end
-    
+
 
     #defines the menue and asks the rider for an input
     def getinfo
