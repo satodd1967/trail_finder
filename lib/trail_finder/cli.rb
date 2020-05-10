@@ -12,10 +12,16 @@ class TrailFinder::CLI
 
     #puts intro script to the rider
     def intro
+        puts "!!!! RIDE FAST CRASH LESS !!!!"
+        puts " "
         puts "Welcome Riders!"
+        puts " "
         puts "Ride Fast Crash Less is a tool that allows you to input your city and get back all the best trails in your area."
-        puts "Below is a list of the most popular cities.  You can either choose one of those by inputing the corresponding number or you can enter your local city."
+        puts " "
+        puts "Below is a list of featured cities.  You can either choose one of those by inputing the corresponding number or you can enter your local city."
+        puts " "
     end
+
 
     #gets the list of most popular cities and puts them to the terminal
     def popular_cities
@@ -27,7 +33,9 @@ class TrailFinder::CLI
 
     def where_now
         puts "Would you like to find more trails?"
+        puts " "
         popular_cities
+        puts " "
         puts "Choose another popular city or enter a new city to search"
     end
 
@@ -38,6 +46,7 @@ class TrailFinder::CLI
         counter = 0
         while input1 != "exit"
             if counter == 0  
+                puts " "
                 puts "Where would you like to ride? Type exit to hit the trails"
             else
                 where_now
@@ -59,7 +68,9 @@ class TrailFinder::CLI
                     input2 = gets.strip.downcase
                     puts "Trails within #{input2} of #{input1}"
                 else
-                    puts "Can't find any trails within #{input2} miles of #{input1}"
+                    if input1 != "exit"
+                         puts "Can't find any trails within #{input2} miles of #{input1}"
+                    end
                 end
                 counter =+ 1
             end
