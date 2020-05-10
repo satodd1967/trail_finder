@@ -27,34 +27,40 @@ class TrailFinder::CLI
 
     def where_now
         puts "Would you like to find more trails?"
-        pupular cities
+        popular_cities
         puts "Choose another popular city or enter a new city to search"
     end
 
     #defines the menue and asks the rider for an input
     def getinfo
         input1 = nil
+        counter = 0
         while input1 != "exit"
-        puts "Where would you like to ride? Type exit to hit the trails"
-            input1 = gets.strip.downcase
-            case input1
-            when "1"
-                puts "Trails for city 1"
-            when "2"
-                puts "Trails for City 2"
-            when "3"
-                puts "Trails for City 3"
-            when "4"
-                puts "Trails for City 4"
-            when "5"
-                puts "Trails for City 5"
-            when "city"
-                puts "How far from your city would you like to search"
-                input2 = gets.strip.downcase
-                puts "Trails within #{input2} of #{input1}"
+            if counter == 0  
+                puts "Where would you like to ride? Type exit to hit the trails"
+            else
+                where_now
+            end
+                input1 = gets.strip.downcase
+                case input1
+                when "1"
+                    puts "Trails for city 1"
+                when "2"
+                    puts "Trails for City 2"
+                when "3"
+                    puts "Trails for City 3"
+                when "4"
+                    puts "Trails for City 4"
+                when "5"
+                    puts "Trails for City 5"
+                when "city"
+                    puts "How far from your city would you like to search"
+                    input2 = gets.strip.downcase
+                    puts "Trails within #{input2} of #{input1}"
+                end
+                counter =+ 1
             end
         end
-    end
 
     def over
         puts "Thanks for riding with us today!"
