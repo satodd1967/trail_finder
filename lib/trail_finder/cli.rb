@@ -70,6 +70,9 @@ class TrailFinder::CLI
         check
     end
 
+    def state_true(city, state)
+    end
+
     #defines the menue and asks the rider for an input
     def getinfo
         input_city = nil
