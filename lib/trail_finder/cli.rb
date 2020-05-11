@@ -56,7 +56,7 @@ class TrailFinder::CLI
     end
 
     def get_trails(city, state, distance)
-        location = Coordinates.new(city, state, distance)
+        location = Coordinates.new(city, state)
         location.get_lat_lon
         lat = location.get_lat
         lon = location.get_lon
@@ -105,7 +105,7 @@ class TrailFinder::CLI
                     input_state = gets.strip
                     puts "How far from your city would you like to search"
                     input_distance = gets.strip
-                    puts "Trails within #{input_distance} of #{input_city}"
+                    puts get_trails(input_city2, input_state, input_distance)
                 else
                     if input_city != "exit"
                          puts "Can't find any trails within #{input_distance} miles of #{input_city}"
