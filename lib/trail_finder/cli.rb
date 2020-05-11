@@ -35,6 +35,7 @@ class TrailFinder::CLI
 
     #provides an alternative message on the second loop
     def where_now
+        puts " "
         puts "Would you like to find more trails?"
         puts " "
         featured_cities
@@ -54,6 +55,12 @@ class TrailFinder::CLI
         trails.get_trail_list
     end
 
+    def city_true(input)
+        coord = Coordinates.new
+        check = coord.city_check(input)
+        check
+    end
+
     def get_trails
     end
 
@@ -62,6 +69,7 @@ class TrailFinder::CLI
         input_city = nil
         input_distance = 0
         input_state = nil
+        input_city2 = nil
         counter = 0
         while input_city != "exit"
             if counter == 0  
@@ -70,7 +78,11 @@ class TrailFinder::CLI
             else
                 where_now
             end
-                input_city = gets.strip.downcase
+            input_city = gets.strip
+            if city_true(input_city) == true
+                input_city2 = input_city
+                input_city = "Good Input"
+            end
                 case input_city
                 when "1"
                     puts get_trails_featured(1)
@@ -82,9 +94,11 @@ class TrailFinder::CLI
                     puts get_trails_featured(4)
                 when "5"
                     puts get_trails_featured(5)
-                when "city"
+                when "Good Input"
+                    puts "What State is the city in?"
+                    input_state = gets.strip
                     puts "How far from your city would you like to search"
-                    input_distance = gets.strip.downcase
+                    input_distance = gets.strip
                     puts "Trails within #{input_distance} of #{input_city}"
                 else
                     if input_city != "exit"
