@@ -12,6 +12,8 @@ require "pry"
     # new_doc = JSON.parse(doc)
     # puts new_doc["trails"].map {|trails| trails["name"]}
 
+
+#needs to take in lat and lon and miles based on user input and get back trails
 class Get_Trails
 
 
