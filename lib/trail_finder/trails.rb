@@ -12,11 +12,16 @@ require "pry"
 #     new_doc = JSON.parse(doc)
 #     trails = new_doc["trails"].map {|trails| trails}
 #     output = trails.each do |trail|
-#                 puts "Name - #{trail["name"]}"
-#                 puts " "
-#                 puts "Summary - #{trail["summary"]}"
-#                 puts " "
-#                 puts " "
+#         puts " "
+#         puts "//// #{trail["name"]} ////"
+#         puts "Location: #{trail["location"]}"
+#         puts "Difficulty: #{trail["difficulty"]}"
+#         puts "Star Rating: #{trail["stars"]}"
+#         puts "Length in Miles: #{trail["length"]}"
+#         puts "Ascent in Feet: #{trail["ascent"]}"
+#         puts "Descent in Feet: #{trail["descent"]}"
+#         puts "Summary: #{trail["summary"]}"
+#         puts "URL: #{trail["url"]}"
 #     end
 
 #needs to take in lat and lon and miles based on user input and get back trails
@@ -24,11 +29,11 @@ class Get_Trails
 
     attr_accessor :lat, :lon, :distance
 
-    def initialize(lat, lon, distance = 5)
+    def initialize(lat, lon, distance = 2)
         @lat = lat
         @lon = lon
         @distance = distance
-        @trail_data = {}
+        @trail_data = []
     end
 
     def api_call
@@ -41,17 +46,17 @@ class Get_Trails
 
     def get_trail_list
         trails = api_call["trails"].map {|trails| trails}
-        output = trails.select do |trail|
+            output = trails.select do |trail|
             puts " "
-            puts "Name: #{trail["name"]}"
+            puts "//// #{trail["name"]} ////"
+            puts "Location: #{trail["location"]}"
+            puts "Difficulty: #{trail["difficulty"]}"
+            puts "Star Rating: #{trail["stars"]}"
+            puts "Length in Miles: #{trail["length"]}"
+            puts "Ascent in Feet: #{trail["ascent"]}"
+            puts "Descent in Feet: #{trail["descent"]}"
             puts "Summary: #{trail["summary"]}"
-            puts " "
-            puts " "
+            puts "URL: #{trail["url"]}"
         end
-        puts output
     end
-
-end   
-
-
-
+end
