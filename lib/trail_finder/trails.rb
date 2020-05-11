@@ -16,5 +16,13 @@ require "pry"
 #needs to take in lat and lon and miles based on user input and get back trails
 class Get_Trails
 
+    attr_accessor :lat, :lon, :distance
 
+    def initialize(lat, lon, distance = 100)
+        @lat = lat
+        @lon = lon
+        @distance = distance
+        @trail_data = []
+    end
+    
 end   
