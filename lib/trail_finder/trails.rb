@@ -32,4 +32,12 @@ class Get_Trails
         doc
     end
 
+    def get_trail_list
+        trails = api_call["trails"].map {|trails| trails}
+        puts trails
+    end
+    
 end   
+
+
+
