@@ -8,7 +8,7 @@ class TrailFinder::CLI
         featured_cities
         getinfo
         trails = Get_Trails.new(33.124, -117.080, 5)
-        trails.api_call
+        trails.get_trail_list
         over
     end
 
