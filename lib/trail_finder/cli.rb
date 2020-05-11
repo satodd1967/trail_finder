@@ -55,13 +55,19 @@ class TrailFinder::CLI
         trails.get_trail_list
     end
 
+    def get_trails(city, state, distance)
+        location = Coordinates.new(city, state, distance)
+        location.get_lat_lon
+        lat = location.get_lat
+        lon = location.get_lon
+        trails = Get_Trails.new(lat, lon, distance)
+        trails.get_trail_list
+    end
+
     def city_true(input)
         coord = Coordinates.new
         check = coord.city_check(input)
         check
-    end
-
-    def get_trails
     end
 
     #defines the menue and asks the rider for an input
