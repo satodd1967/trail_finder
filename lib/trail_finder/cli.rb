@@ -7,7 +7,7 @@ class TrailFinder::CLI
         intro
         featured_cities
         getinfo
-        get_trails_featured
+        # get_trails_featured(1)
         # trails = Get_Trails.new(33.124, -117.080, 5)
         # trails.get_trail_list
         over
@@ -28,12 +28,12 @@ class TrailFinder::CLI
 
     #gets the list of most featured cities and puts them to the terminal
     def featured_cities
-        f_cities = ["Salt Lake City, Utah", "Austin, Texas", "Bentonville, Arkansas", "Denver, Colorado", "Phoenix, Arizona"]
-        puts "1. #{f_cities[0]}"
-        puts "2. #{f_cities[1]}"
-        puts "3. #{f_cities[2]}"
-        puts "4. #{f_cities[3]}"
-        puts "5. #{f_cities[4]}"
+        @f_cities = ["Salt Lake City, Utah", "Austin, Texas", "Bentonville, Arkansas", "Denver, Colorado", "Phoenix, Arizona"]
+        puts "1. #{@f_cities[0]}"
+        puts "2. #{@f_cities[1]}"
+        puts "3. #{@f_cities[2]}"
+        puts "4. #{@f_cities[3]}"
+        puts "5. #{@f_cities[4]}"
     end
 
     #provides an alternative message on the second loop
@@ -45,11 +45,16 @@ class TrailFinder::CLI
         puts "Choose another popular city or enter a new city to search"
     end
 
-    def get_trails_featured
-        city = "Salt Lake City, Utah".split(",")[0]
-        state = "Salt Lake City, Utah".split(", ")[1]
-        puts city
-        puts state
+    def get_trails_featured(choice)
+        input = choice.to_i - 1
+        city = @f_cities[input].split(",")[0]
+        state = @f_cities[input].split(", ")[1]
+        location = Coordinates.new(city, state)
+        location.get_lat_lon
+        lat = location.get_lat
+        lon = location.get_lon
+        trails = Get_Trails.new(lat, lon)
+        trails.get_trail_list
     end
 
 
@@ -68,7 +73,7 @@ class TrailFinder::CLI
                 input1 = gets.strip.downcase
                 case input1
                 when "1"
-                    puts "Trails for city 1"
+                    puts get_trails_featured(1)
                 when "2"
                     puts "Trails for City 2"
                 when "3"

@@ -24,7 +24,7 @@ class Get_Trails
 
     attr_accessor :lat, :lon, :distance
 
-    def initialize(lat, lon, distance = 100)
+    def initialize(lat, lon, distance = 50)
         @lat = lat
         @lon = lon
         @distance = distance
@@ -41,13 +41,14 @@ class Get_Trails
 
     def get_trail_list
         trails = api_call["trails"].map {|trails| trails}
-        output = trails.each do |trail|
+        output = trails.select do |trail|
             puts " "
             puts "Name: #{trail["name"]}"
             puts "Summary: #{trail["summary"]}"
             puts " "
             puts " "
         end
+        puts output
     end
 
 end   
