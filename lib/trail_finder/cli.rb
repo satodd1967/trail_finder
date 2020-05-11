@@ -77,14 +77,14 @@ class TrailFinder::CLI
         input_state = nil
         input_city2 = nil
         counter = 0
-        while input_city != "exit"
+        while input_city != "Exit"
             if counter == 0  
                 puts " "
                 puts "Where would you like to ride? Type exit to hit the trails"
             else
                 where_now
             end
-            input_city = gets.strip
+            input_city = gets.strip.split.map(&:capitalize).join(" ")
             if city_true(input_city) == true
                 input_city2 = input_city
                 input_city = "Good Input"
@@ -102,12 +102,12 @@ class TrailFinder::CLI
                     puts get_trails_featured(5)
                 when "Good Input"
                     puts "What State is the city in?"
-                    input_state = gets.strip
+                    input_state = gets.strip.split.map(&:capitalize).join(" ")
                     puts "How far from your city would you like to search"
                     input_distance = gets.strip
                     puts get_trails(input_city2, input_state, input_distance)
                 else
-                    if input_city != "exit"
+                    if input_city != "Exit"
                         puts " "
                         puts "Sorry we can't find that city in our database.  Please check the spelling, or use the nearest major city."
                     end
