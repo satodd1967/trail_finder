@@ -12,4 +12,7 @@ require "pry"
     # new_doc = JSON.parse(doc)
     # puts new_doc["trails"].map {|trails| trails["name"]}
 
-   
+class Get_Trails
+
+
+end   
