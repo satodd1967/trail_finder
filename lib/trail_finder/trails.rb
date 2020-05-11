@@ -24,7 +24,7 @@ class Get_Trails
 
     attr_accessor :lat, :lon, :distance
 
-    def initialize(lat, lon, distance = 50)
+    def initialize(lat, lon, distance = 5)
         @lat = lat
         @lon = lon
         @distance = distance

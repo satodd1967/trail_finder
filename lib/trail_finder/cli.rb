@@ -75,13 +75,13 @@ class TrailFinder::CLI
                 when "1"
                     puts get_trails_featured(1)
                 when "2"
-                    puts "Trails for City 2"
+                    puts get_trails_featured(2)
                 when "3"
-                    puts "Trails for City 3"
+                    puts get_trails_featured(3)
                 when "4"
-                    puts "Trails for City 4"
+                    puts get_trails_featured(4)
                 when "5"
-                    puts "Trails for City 5"
+                    puts get_trails_featured(5)
                 when "city"
                     puts "How far from your city would you like to search"
                     input2 = gets.strip.downcase
