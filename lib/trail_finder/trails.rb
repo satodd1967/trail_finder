@@ -58,5 +58,8 @@ class Get_Trails
             puts "Summary: #{trail["summary"]}"
             puts "URL: #{trail["url"]}"
         end
+        puts " "
+        puts "Found #{trails.count} trails!"
+        puts output
     end
 end
