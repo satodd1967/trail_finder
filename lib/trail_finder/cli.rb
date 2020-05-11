@@ -57,6 +57,8 @@ class TrailFinder::CLI
         trails.get_trail_list
     end
 
+    def get_trails
+    end
 
     #defines the menue and asks the rider for an input
     def getinfo
