@@ -29,28 +29,36 @@ require "pry"
 #needs to be able to take in a city and return lat and lon
 class Coordinates
 
-    def initialize
+    attr_accessor :city, :state
+    
+    def initialize(city, state)
+        @city = city
+        @state = state
         @coordinates = []
     end
 
     def api_call
         url = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=1000-largest-us-cities-by-population-with-geographic-coordinates&q=&rows=1000&sort=-rank&facet=city&facet=state"
         data = Nokogiri::HTML(open(url))
-        doc =  JSON.parse(doc)
+        doc =  JSON.parse(data)
         doc
     end
 
     def get_lat_lon
-        city = "New York"
-        state = "New York"
         cities = api_call["records"].map {|arrays| arrays["fields"]}
-        selection = cities.select {|cities| cities["city"] == city && cities["state"] == state}
+        selection = cities.select {|cities| cities["city"] == @city && cities["state"] == @state}
         selection.each do |items|
             @coordinates << items["city"]
             @coordinates << items["state"]
             @coordinates << items["coordinates"]
         end
     end
+
+    def read_coordinates
+        @coordinates
+    end
+
 end
+
 
 
