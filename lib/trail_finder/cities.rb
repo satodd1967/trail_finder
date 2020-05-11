@@ -4,26 +4,23 @@ require "open-uri"
 require "json"
 require "pry"
 
-#All of the code necessary to pull down the city data
-    # api_call = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=1000-largest-us-cities-by-population-with-geographic-coordinates&q=&rows=1000&sort=-rank&facet=city&facet=state"
-    # doc = Nokogiri::HTML(open(api_call))
-    # new_doc = JSON.parse(doc)
+# #All of the code necessary to pull down the city data
+#     api_call = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=1000-largest-us-cities-by-population-with-geographic-coordinates&q=&rows=1000&sort=-rank&facet=city&facet=state"
+#     doc = Nokogiri::HTML(open(api_call))
+#     new_doc = JSON.parse(doc)
 
-#Gets to the level needed.  Will need to itterate over this due to the fact that below records is an array
-    # puts new_doc["records"][1]["fields"]["city"]
-
-#This works and pulls all the cities from the list and then break them down to the coordinates for the single city
-    # coordinates = []
-    # city = "Marquette"
-    # state = "Michigan"
-    # cities = new_doc["records"].map {|arrays| arrays["fields"]}
-    # data  = cities.select {|cities| cities["city"] == city && cities["state"] == state}
-    # data.each do |stuff|
-    #     coordinates << stuff["city"]
-    #     coordinates << stuff["state"]
-    #     coordinates << stuff["coordinates"]
-    # end
-    # puts coordinates
+# #This works and pulls all the cities from the list and then break them down to the coordinates for the single city
+#     coordinates = []
+#     city = "Denver"
+#     state = "Colorado"
+#     cities = new_doc["records"].map {|arrays| arrays["fields"]}
+#     data  = cities.select {|cities| cities["city"] == city && cities["state"] == state}
+#     data.each do |stuff|
+#         coordinates << stuff["city"]
+#         coordinates << stuff["state"]
+#         coordinates << stuff["coordinates"]
+#     end
+#     puts coordinates[2].join(" ").split(" ")[0].to_f.round(3).to_s
 
 
 #needs to be able to take in a city and return lat and lon
@@ -56,6 +53,14 @@ class Coordinates
 
     def read_coordinates
         @coordinates
+    end
+
+    def get_lat
+        @coordinates[2].join(" ").split(" ")[0].to_f.round(3).to_s
+    end
+
+    def get_lon
+        @coordinates[2].join(" ").split(" ")[1].to_f.round(3).to_s
     end
 
 end
