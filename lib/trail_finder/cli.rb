@@ -40,7 +40,7 @@ class TrailFinder::CLI
         puts " "
         featured_cities
         puts " "
-        puts "Choose another popular city or enter a new city to search"
+        puts "Choose a featured city or enter a new city to search!"
     end
 
     def get_trails_featured(choice)
@@ -108,7 +108,8 @@ class TrailFinder::CLI
                     puts get_trails(input_city2, input_state, input_distance)
                 else
                     if input_city != "exit"
-                         puts "Can't find any trails within #{input_distance} miles of #{input_city}"
+                        puts " "
+                        puts "Sorry we can't find that city in our database.  Please check the spelling, or use the nearest major city."
                     end
                 end
                 counter =+ 1
