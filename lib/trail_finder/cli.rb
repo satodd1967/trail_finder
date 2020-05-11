@@ -7,8 +7,9 @@ class TrailFinder::CLI
         intro
         featured_cities
         getinfo
-        trails = Get_Trails.new(33.124, -117.080, 5)
-        trails.get_trail_list
+        get_trails_featured
+        # trails = Get_Trails.new(33.124, -117.080, 5)
+        # trails.get_trail_list
         over
     end
 
@@ -44,7 +45,11 @@ class TrailFinder::CLI
         puts "Choose another popular city or enter a new city to search"
     end
 
-    def get_trails_cli
+    def get_trails_featured
+        city = "Salt Lake City, Utah".split(",")[0]
+        state = "Salt Lake City, Utah".split(", ")[1]
+        puts city
+        puts state
     end
 
 
