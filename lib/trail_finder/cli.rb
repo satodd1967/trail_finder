@@ -7,9 +7,9 @@ class TrailFinder::CLI
         intro
         featured_cities
         getinfo
-        where = Coordinates.new("Denver", "Colorado")
-        where.get_lat_lon
-        puts where.read_coordinates
+        # where = Coordinates.new("Denver", "Colorado")
+        # where.get_lat_lon
+        # puts where.read_coordinates
         over
     end
 
