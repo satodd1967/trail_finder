@@ -7,9 +7,8 @@ class TrailFinder::CLI
         intro
         featured_cities
         getinfo
-        where = Coordinates.new("Denver", "Colorado")
-        where.get_lat_lon
-        puts where.get_lon
+        trails = Get_Trails.new(33.124, -117.080, 5)
+        trails.api_call
         over
     end
 
