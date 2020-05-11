@@ -25,7 +25,7 @@ class TrailFinder::CLI
 
     #gets the list of most featured cities and puts them to the terminal
     def featured_cities
-        f_cities = ["Moab, Utah", "Copper Harbor, Michigan", "Bentonville, Arkansas", "East Burke, Vermont", "Ashville, North Carolina"]
+        f_cities = ["Salt Lake City, Utah", "Austin, Texas", "Bentonville, Arkansas", "Denver, Colorado", "Phoenix, Arizona"]
         puts "1. #{f_cities[0]}"
         puts "2. #{f_cities[1]}"
         puts "3. #{f_cities[2]}"
