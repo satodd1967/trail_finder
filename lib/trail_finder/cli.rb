@@ -59,18 +59,19 @@ class TrailFinder::CLI
 
     #defines the menue and asks the rider for an input
     def getinfo
-        input1 = nil
-        input2 = 0
+        input_city = nil
+        input_distance = 0
+        input_state = nil
         counter = 0
-        while input1 != "exit"
+        while input_city != "exit"
             if counter == 0  
                 puts " "
                 puts "Where would you like to ride? Type exit to hit the trails"
             else
                 where_now
             end
-                input1 = gets.strip.downcase
-                case input1
+                input_city = gets.strip.downcase
+                case input_city
                 when "1"
                     puts get_trails_featured(1)
                 when "2"
@@ -83,11 +84,11 @@ class TrailFinder::CLI
                     puts get_trails_featured(5)
                 when "city"
                     puts "How far from your city would you like to search"
-                    input2 = gets.strip.downcase
-                    puts "Trails within #{input2} of #{input1}"
+                    input_distance = gets.strip.downcase
+                    puts "Trails within #{input_distance} of #{input_city}"
                 else
-                    if input1 != "exit"
-                         puts "Can't find any trails within #{input2} miles of #{input1}"
+                    if input_city != "exit"
+                         puts "Can't find any trails within #{input_distance} miles of #{input_city}"
                     end
                 end
                 counter =+ 1
