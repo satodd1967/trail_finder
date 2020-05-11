@@ -27,5 +27,9 @@ class Get_Trails
 
     def api_call
         url = "https://www.mtbproject.com/data/get-trails?lat=#{@lat}&lon=#{@lon}&maxDistance=#{@distance}&key=200752494-3cc116808ab25b0826c7c50c3d42c825"
+        data = Nokogiri::HTML(open(api_call))
+        doc = JSON.parse(data)
+        doc
+    end
 
 end   
