@@ -80,7 +80,10 @@ class Coordinates
         data = api_call["records"].map {|arrays| arrays["fields"]}
         cities = data.map {|cities| cities["city"]}
         check = cities.each {|cities| cities}.include?(input)
-    end 
+    end
+    
+    def state_check(input)
+    end
 
 end
 
