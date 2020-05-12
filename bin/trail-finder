@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
-require "./lib/trail_finder"
+require "bundler/setup"
+require "trail_finder"
 
 TrailFinder::CLI.new.call
 
