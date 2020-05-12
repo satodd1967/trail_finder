@@ -11,12 +11,27 @@ require "pry"
     
 #  #This works to get the list of available cities 
 #     cities = new_doc["records"].map {|arrays| arrays["fields"]}
-#     data  = cities.map {|cities| cities["city"]}
+#     data = cities.map {|cities| cities["city"]}
 #     check = data.each {|cities| cities}.include?("New York")
 #     puts check
 
+#This works to get the list of available cities 
+    # new = []
+    # city = "Denver"
+    # state = "Kentucky"
+    # cities = new_doc["records"].map {|arrays| arrays["fields"]}
+    # data  = cities.select {|cities| cities["city"] == city && cities["state"] == state}
+    # if data == []
+    #     puts "got nil"
+    # else
+    #     puts "bullshit"
+    # end
 
-# #This works and pulls all the cities from the list and then breaks them down to the coordinates for the single city
+    
+
+
+
+# #This works and pulls all the cties from the list and then breaks them down to the coordinates for the single city
 #     coordinates = []
 #     city = "Denver"
 #     state = "Colorado"
@@ -82,9 +97,6 @@ class Coordinates
         check = cities.each {|cities| cities}.include?(input)
     end
     
-    def state_check(input)
-    end
-
 end
 
 

@@ -58,19 +58,21 @@ class TrailFinder::CLI
     def get_trails(city, state, distance)
         location = Coordinates.new(city, state)
         location.get_lat_lon
-        lat = location.get_lat
-        lon = location.get_lon
-        trails = Get_Trails.new(lat, lon, distance)
-        trails.get_trail_list
+        if location.read_coordinates == []
+            puts " "
+            puts "We couldn't find that city, state combination in our database.  Try again or enter the nearest major city."
+        else
+            lat = location.get_lat
+            lon = location.get_lon
+            trails = Get_Trails.new(lat, lon, distance)
+            trails.get_trail_list
+        end
     end
 
     def city_true(input)
         coord = Coordinates.new
         check = coord.city_check(input)
         check
-    end
-
-    def state_true(city, state)
     end
 
     #defines the menue and asks the rider for an input
