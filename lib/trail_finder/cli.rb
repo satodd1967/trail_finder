@@ -4,6 +4,7 @@ class TrailFinder::CLI
 
     #main method runs the program
     def call
+        puts "Loading..."
         TrailFinder::City_Scrape.new
         intro
         featured_cities
@@ -13,12 +14,12 @@ class TrailFinder::CLI
 
     #puts intro script to the rider
     def intro
+        puts " "
         puts "!!!! RIDE FAST CRASH LESS !!!!"
         puts " "
         puts "Welcome Riders!"
         puts " "
         puts "Ride Fast Crash Less is a tool that allows you to input your city and get back all the best trails in your area."
-        puts " "
         puts "Below is a list of featured cities.  You can either choose one of those by inputing the corresponding number or you can enter your local city."
         puts " "
     end
@@ -71,8 +72,8 @@ class TrailFinder::CLI
     end
 
     def city_true(input)
-        coord = TrailFinder::Coordinates.new
-        check = coord.city_check(input)
+        coordinates = TrailFinder::Coordinates.new
+        check = coordinates.city_check(input)
         check
     end
 

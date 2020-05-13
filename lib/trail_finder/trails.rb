@@ -8,19 +8,13 @@ class TrailFinder::Get_Trails
         @lat = lat
         @lon = lon
         @distance = distance
-        @trail_data = []
-    end
-
-    def api_call
-        api_call = "https://www.mtbproject.com/data/get-trails?lat=#{@lat}&lon=#{@lon}&maxDistance=#{@distance}&key=200752494-3cc116808ab25b0826c7c50c3d42c825"
-        data = Nokogiri::HTML(open(api_call))
-        doc = JSON.parse(data)
-        # puts new_doc["trails"].map {|trails| trails}.first
-        doc
+        # @trail_data = {}
+        @trail_data = TrailFinder::Trail_Scrape.new(lat, lon, distance).data
+        # self.api_call
     end
 
     def get_trail_list
-        trails = api_call["trails"].map {|trails| trails}
+        trails = @trail_data["trails"].map {|trails| trails}
             output = trails.select do |trail|
             puts " "
             puts "//// #{trail["name"]} ////"
