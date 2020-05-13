@@ -40,9 +40,7 @@ class TrailFinder::CLI
         puts " "
         puts "Would you like to find more trails?"
         puts " "
-        featured_cities
-        puts " "
-        puts "Choose a featured city or enter a new city to search!"
+        puts "Enter a new city to search!"
     end
 
     def city_true(input)
