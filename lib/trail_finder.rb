@@ -1,6 +1,8 @@
 require "nokogiri"
+require "open-uri"
 require "pry"
 require "json"
+
 require_relative "trail_finder/version"
 require_relative "trail_finder/cli"
 require_relative "trail_finder/trails"
