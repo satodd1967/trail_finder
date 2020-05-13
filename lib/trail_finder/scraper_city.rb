@@ -3,6 +3,10 @@ class TrailFinder::City_Scrape
 
     @@doc = {}
 
+    def initialize
+        self.api_call
+    end
+    
     #pulls data from the MTB project api and then uses JSON parse to convert it to a usable hash.  Returns that hash.
     def api_call
         @@doc = {}

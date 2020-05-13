@@ -4,6 +4,7 @@ class TrailFinder::CLI
 
     #main method runs the program
     def call
+        TrailFinder::City_Scrape.new
         intro
         featured_cities
         getinfo

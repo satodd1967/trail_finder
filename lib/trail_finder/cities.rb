@@ -21,7 +21,9 @@ class TrailFinder::Coordinates
 
     #parses city, state and lat/lon(as 1 string) data and pushes it into the coordinates array.
     def get_lat_lon
-        cities = api_call["records"].map {|arrays| arrays["fields"]}
+        # TrailFinder::City_Scrape.new
+        # cities = api_call["records"].map {|arrays| arrays["fields"]}
+        cities = TrailFinder::City_Scrape.doc["records"].map {|arrays| arrays["fields"]}
         selection = cities.select {|cities| cities["city"] == @city && cities["state"] == @state}
         selection.each do |items|
             @coordinates << items["city"]
@@ -46,7 +48,8 @@ class TrailFinder::Coordinates
     end
 
     def city_check(input)
-        data = api_call["records"].map {|arrays| arrays["fields"]}
+        # data = api_call["records"].map {|arrays| arrays["fields"]}
+        data = TrailFinder::City_Scrape.doc["records"].map {|arrays| arrays["fields"]}
         cities = data.map {|cities| cities["city"]}
         check = cities.each {|cities| cities}.include?(input)
     end
