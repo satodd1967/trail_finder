@@ -1,15 +1,8 @@
 
-# require "nokogiri"
-# require "open-uri"
-# require "json"
-# require "pry"
-
 #needs to be able to take in a city and return lat and lon to be used in the Get_Trails class
-class Coordinates
+class TrailFinder::Coordinates
 
     attr_accessor :city, :state
-
-    @@City_data
     
     #initializes a new instance of Coordinates with a city instance variable, a state variable and a coordinates instance variable set to an array.  The array will hold city, state and lattitude and longitude coordinates.
     def initialize(city = nil, state = nil)

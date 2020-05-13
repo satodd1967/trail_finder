@@ -47,16 +47,16 @@ class TrailFinder::CLI
         input = choice.to_i - 1
         city = @f_cities[input].split(",")[0]
         state = @f_cities[input].split(", ")[1]
-        location = Coordinates.new(city, state)
+        location = TrailFinder::Coordinates.new(city, state)
         location.get_lat_lon
         lat = location.get_lat
         lon = location.get_lon
-        trails = Get_Trails.new(lat, lon)
+        trails = TrailFinder::Get_Trails.new(lat, lon)
         trails.get_trail_list
     end
 
     def get_trails(city, state, distance)
-        location = Coordinates.new(city, state)
+        location = TrailFinder::Coordinates.new(city, state)
         location.get_lat_lon
         if location.read_coordinates == []
             puts " "
@@ -64,13 +64,13 @@ class TrailFinder::CLI
         else
             lat = location.get_lat
             lon = location.get_lon
-            trails = Get_Trails.new(lat, lon, distance)
+            trails = TrailFinder::Get_Trails.new(lat, lon, distance)
             trails.get_trail_list
         end
     end
 
     def city_true(input)
-        coord = Coordinates.new
+        coord = TrailFinder::Coordinates.new
         check = coord.city_check(input)
         check
     end
