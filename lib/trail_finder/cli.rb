@@ -45,6 +45,12 @@ class TrailFinder::CLI
         puts "Choose a featured city or enter a new city to search!"
     end
 
+    def city_true(input)
+        coordinates = TrailFinder::Coordinates.new
+        check = coordinates.city_check(input)
+        check
+    end
+
     def get_trails_featured(choice)
         input = choice.to_i - 1
         city = @f_cities[input].split(",")[0]
@@ -69,12 +75,6 @@ class TrailFinder::CLI
             trails = TrailFinder::Get_Trails.new(lat, lon, distance)
             trails.get_trail_list
         end
-    end
-
-    def city_true(input)
-        coordinates = TrailFinder::Coordinates.new
-        check = coordinates.city_check(input)
-        check
     end
 
     #defines the menue and asks the rider for an input
