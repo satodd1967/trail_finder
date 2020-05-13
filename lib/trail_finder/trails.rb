@@ -15,9 +15,23 @@ class TrailFinder::Get_Trails
 
     def get_trail_list
         trails = @trail_data["trails"].map {|trails| trails}
-            output = trails.select do |trail|
+           output = trails.each.with_index(1) do |trail, i|
             puts " "
-            puts "//// #{trail["name"]} ////"
+            puts "#{i}, //// #{trail["name"]} \\\\"
+            puts "Location: #{trail["location"]}"
+            puts "Difficulty: #{trail["difficulty"]}"
+            puts "Star Rating: #{trail["stars"]}"
+        end
+        puts " "
+        puts "Found #{trails.count} trails!"
+        # puts output
+    end
+
+    def get_trail_details
+        trails = @trail_data["trails"].map {|trails| trails}
+        output = trails.select do |trail|
+            puts " "
+            puts "//// #{trail["name"]} \\\\"
             puts "Location: #{trail["location"]}"
             puts "Difficulty: #{trail["difficulty"]}"
             puts "Star Rating: #{trail["stars"]}"
@@ -29,9 +43,10 @@ class TrailFinder::Get_Trails
         end
         puts " "
         puts "Found #{trails.count} trails!"
-        puts output
     end
 end
+
+
 
 # #  This works to pull the individual trail confirms all data is available and working.  Returns the names of all trailse by parameters   
 #     lat = 33.124
