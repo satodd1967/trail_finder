@@ -25,3 +25,12 @@ Prompts the rider to either exit, search by different parameters, return to the 
   exit returns to the welcome Prompt
   new search retruns to a modified welcome prompt that only asks for parameters
   return to the list returns a list based on prior search parameters
+
+  On the CLI -
+
+  Try componetizing each individual decision that the user has to make.
+  Each compnent should be able to
+    provide output
+    direct to other components
+    handle errors
+    exit the program

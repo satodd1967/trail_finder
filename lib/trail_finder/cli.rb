@@ -73,6 +73,17 @@ class TrailFinder::CLI
         end
     end
 
+    def controller_main
+    end
+
+    def controller_details
+
+    def controller_state
+    end
+
+    def controller_distance
+    end
+    
     #defines the menue and asks the rider for an input
     def getinfo
         input_city = nil
