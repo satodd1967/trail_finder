@@ -77,6 +77,7 @@ class TrailFinder::CLI
     end
 
     def controller_details
+    end
 
     def controller_state
     end
