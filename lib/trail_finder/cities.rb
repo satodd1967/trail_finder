@@ -1,8 +1,8 @@
 
-require "nokogiri"
+# require "nokogiri"
 require "open-uri"
-require "json"
-require "pry"
+# require "json"
+# require "pry"
 
 #needs to be able to take in a city and return lat and lon to be used in the Get_Trails class
 class Coordinates
