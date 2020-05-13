@@ -2,6 +2,8 @@ PATH
   remote: .
   specs:
     trail_finder (0.1.0)
+      json
+      nokogiri
 
 GEM
   remote: https://rubygems.org/
@@ -22,8 +24,6 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 2.0)
-  json
-  nokogiri
   pry
   rake (~> 12.0)
   trail_finder!
