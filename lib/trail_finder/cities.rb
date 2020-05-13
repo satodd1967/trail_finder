@@ -11,18 +11,8 @@ class TrailFinder::Coordinates
         @coordinates = []
     end
 
-    #pulls data from the MTB project api and then uses JSON parse to convert it to a usable hash.  Returns that hash.
-    def api_call
-        url = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=1000-largest-us-cities-by-population-with-geographic-coordinates&q=&rows=1000&sort=-rank&facet=city&facet=state"
-        data = Nokogiri::HTML(open(url))
-        doc =  JSON.parse(data)
-        doc
-    end
-
     #parses city, state and lat/lon(as 1 string) data and pushes it into the coordinates array.
     def get_lat_lon
-        # TrailFinder::City_Scrape.new
-        # cities = api_call["records"].map {|arrays| arrays["fields"]}
         cities = TrailFinder::City_Scrape.doc["records"].map {|arrays| arrays["fields"]}
         selection = cities.select {|cities| cities["city"] == @city && cities["state"] == @state}
         selection.each do |items|
@@ -48,7 +38,6 @@ class TrailFinder::Coordinates
     end
 
     def city_check(input)
-        # data = api_call["records"].map {|arrays| arrays["fields"]}
         data = TrailFinder::City_Scrape.doc["records"].map {|arrays| arrays["fields"]}
         cities = data.map {|cities| cities["city"]}
         check = cities.each {|cities| cities}.include?(input)
