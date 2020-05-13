@@ -37,10 +37,8 @@ class TrailFinder::CLI
 
     #provides an alternative message on the second loop
     def where_now
-        puts " "
-        puts "Would you like to find more trails?"
-        puts " "
-        puts "Enter a new city to search!"
+        puts "* Would you like to find more trails? *"
+        puts "Enter a new city to search! Or enter Exit to hit the trails!"
     end
 
     def city_true(input)

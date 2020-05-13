@@ -17,21 +17,20 @@ class TrailFinder::Get_Trails
         trails = @trail_data["trails"].map {|trails| trails}
            output = trails.each.with_index(1) do |trail, i|
             puts " "
-            puts "#{i}, //// #{trail["name"]} \\\\"
-            puts "Location: #{trail["location"]}"
-            puts "Difficulty: #{trail["difficulty"]}"
-            puts "Star Rating: #{trail["stars"]}"
+            puts "#{i}, //// #{trail["name"]} ////"
+            puts "  Location: #{trail["location"]}"
+            puts "  Difficulty: #{trail["difficulty"]}"
+            puts "  Star Rating: #{trail["stars"]}"
         end
         puts " "
-        puts "Found #{trails.count} trails!"
-        # puts output
+        puts "-Found #{trails.count} trails!-"
     end
 
     def get_trail_details
         trails = @trail_data["trails"].map {|trails| trails}
         output = trails.select do |trail|
             puts " "
-            puts "//// #{trail["name"]} \\\\"
+            puts "//// #{trail["name"]} ////"
             puts "Location: #{trail["location"]}"
             puts "Difficulty: #{trail["difficulty"]}"
             puts "Star Rating: #{trail["stars"]}"
@@ -42,7 +41,7 @@ class TrailFinder::Get_Trails
             puts "URL: #{trail["url"]}"
         end
         puts " "
-        puts "Found #{trails.count} trails!"
+        puts "-Found #{trails.count} trails!-"
     end
 end
 
