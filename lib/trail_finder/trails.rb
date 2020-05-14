@@ -8,9 +8,8 @@ class TrailFinder::Get_Trails
         @lat = lat
         @lon = lon
         @distance = distance
-        # @trail_data = {}
-        @trail_data = TrailFinder::Trail_Scrape.new(lat, lon, distance).data
-        # self.api_call
+        load_data = TrailFinder::Trail_Scrape.new(lat, lon, distance).data
+        @trail_data = load_data
     end
 
     def get_trail_list
@@ -26,9 +25,10 @@ class TrailFinder::Get_Trails
         puts "-Found #{trails.count} trails!-"
     end
 
-    def get_trail_details
+    def get_trail_details(choice)
         trails = @trail_data["trails"].map {|trails| trails}
-        output = trails.select do |trail|
+        output = trails.each.with_index(1) do |trail, i|
+            if i == choice
             puts " "
             puts "//// #{trail["name"]} ////"
             puts "Location: #{trail["location"]}"
@@ -39,11 +39,13 @@ class TrailFinder::Get_Trails
             puts "Descent in Feet: #{trail["descent"]}"
             puts "Summary: #{trail["summary"]}"
             puts "URL: #{trail["url"]}"
+            end
         end
-        puts " "
-        puts "-Found #{trails.count} trails!-"
+        puts output
     end
+
 end
+
 
 
 

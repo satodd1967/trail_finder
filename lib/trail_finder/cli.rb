@@ -57,7 +57,7 @@ class TrailFinder::CLI
         city = @f_cities[input].split(",")[0]
         state = @f_cities[input].split(", ")[1]
         location = TrailFinder::Coordinates.new(city, state)
-        location.get_lat_lon
+        # location.get_lat_lon
         lat = location.get_lat
         lon = location.get_lon
         trails = TrailFinder::Get_Trails.new(lat, lon)
@@ -66,19 +66,22 @@ class TrailFinder::CLI
 
     def get_trails(city, state, distance)
         location = TrailFinder::Coordinates.new(city, state)
-        location.get_lat_lon
+        # location.get_lat_lon
         lat = location.get_lat
         lon = location.get_lon
         trails = TrailFinder::Get_Trails.new(lat, lon, distance)
         trails.get_trail_list
-        end
+    end
+
+    def get_trail_details(choice)
+        
     end
 
     def controller_state
         puts "What State is the city in?"
         @input_state = gets.strip.split.map(&:capitalize).join(" ")
         location = TrailFinder::Coordinates.new(@input_city2, @input_state)
-        location.get_lat_lon
+        # location.get_lat_lon
         if location.read_coordinates == []
             puts " "
             puts "We couldn't find #{@input_city2}, #{@input_state} in our database.  Try again or enter the nearest major city."
@@ -99,7 +102,9 @@ class TrailFinder::CLI
         puts "would you like more details on any of these trails? (y/n)"
         input = gets.strip.downcase
         if input == "y"
-            puts "Yippie"
+            puts "Please enter the number of the trail you would like more info on"
+            input = gets.strip.downcase
+            get_trail_details(input)
         end 
     end
 
@@ -145,8 +150,9 @@ class TrailFinder::CLI
                     puts " "
                     puts "Sorry we can't find that city in our database.  Please check the spelling, or use the nearest major city."
                 end
+            end
+            @counter =+ 1
         end
-        @counter =+ 1
     end
 
 end

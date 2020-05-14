@@ -9,6 +9,7 @@ class TrailFinder::Coordinates
         @city = city
         @state = state
         @coordinates = []
+        self.get_lat_lon
     end
 
     #parses city, state and lat/lon(as 1 string) data and pushes it into the coordinates array.
