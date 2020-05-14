@@ -8,7 +8,7 @@ class TrailFinder::CLI
         TrailFinder::City_Scrape.new
         intro
         featured_cities
-        getinfo
+        controller_main
         over
     end
 
@@ -33,6 +33,11 @@ class TrailFinder::CLI
         puts "3. #{@f_cities[2]}"
         puts "4. #{@f_cities[3]}"
         puts "5. #{@f_cities[4]}"
+    end
+
+    def where
+        puts " "
+        puts "Where would you like to ride? Enter exit at any time to hit the trails."
     end
 
     #provides an alternative message on the second loop
@@ -62,76 +67,86 @@ class TrailFinder::CLI
     def get_trails(city, state, distance)
         location = TrailFinder::Coordinates.new(city, state)
         location.get_lat_lon
-        if location.read_coordinates == []
-            puts " "
-            puts "We couldn't find that city, state combination in our database.  Try again or enter the nearest major city."
-        else
-            lat = location.get_lat
-            lon = location.get_lon
-            trails = TrailFinder::Get_Trails.new(lat, lon, distance)
-            trails.get_trail_list
+        lat = location.get_lat
+        lon = location.get_lon
+        trails = TrailFinder::Get_Trails.new(lat, lon, distance)
+        trails.get_trail_list
         end
-    end
-
-    def controller_main
-    end
-
-    def controller_details
     end
 
     def controller_state
+        puts "What State is the city in?"
+        @input_state = gets.strip.split.map(&:capitalize).join(" ")
+        location = TrailFinder::Coordinates.new(@input_city2, @input_state)
+        location.get_lat_lon
+        if location.read_coordinates == []
+            puts " "
+            puts "We couldn't find #{@input_city2}, #{@input_state} in our database.  Try again or enter the nearest major city."
+            controller_main
+        else
+            controller_distance
+        end
     end
 
     def controller_distance
+        puts "How far from your city would you like to search"
+        @input_distance = gets.strip
+        puts get_trails(@input_city2, @input_state, @input_distance)
+        controller_details
     end
-    
-    #defines the menue and asks the rider for an input
-    def getinfo
-        input_city = nil
-        input_distance = 0
-        input_state = nil
-        input_city2 = nil
-        counter = 0
-        while input_city != "Exit"
-            if counter == 0  
-                puts " "
-                puts "Where would you like to ride? Type exit to hit the trails"
-            else
-                where_now
-            end
-            input_city = gets.strip.split.map(&:capitalize).join(" ")
-            if city_true(input_city) == true
-                input_city2 = input_city
-                input_city = "Good Input"
-            end
-                case input_city
-                when "1"
-                    puts get_trails_featured(1)
-                when "2"
-                    puts get_trails_featured(2)
-                when "3"
-                    puts get_trails_featured(3)
-                when "4"
-                    puts get_trails_featured(4)
-                when "5"
-                    puts get_trails_featured(5)
-                when "Good Input"
-                    puts "What State is the city in?"
-                    input_state = gets.strip.split.map(&:capitalize).join(" ")
-                    puts "How far from your city would you like to search"
-                    input_distance = gets.strip
-                    puts get_trails(input_city2, input_state, input_distance)
-                else
-                    if input_city != "Exit"
-                        puts " "
-                        puts "Sorry we can't find that city in our database.  Please check the spelling, or use the nearest major city."
-                    end
-                end
-                counter =+ 1
-            end
-        end
+
+    def controller_details
+        puts "would you like more details on any of these trails? (y/n)"
+        input = gets.strip.downcase
+        if input == "y"
+            puts "Yippie"
+        end 
+    end
 
     def over
         puts "Thanks for riding with us today!"
     end
+
+    def controller_main
+        @input_city = nil
+        @input_city2 = nil
+        @counter = 0
+        while @input_city != "Exit"
+            if @counter == 0
+                where
+            else
+                where_now
+            end
+        @input_city = gets.strip.split.map(&:capitalize).join(" ")
+            if city_true(@input_city) == true
+                @input_city2 = @input_city
+                @input_city = "Good Input"
+            end
+            case @input_city
+            when "1"
+                puts get_trails_featured(1)
+                controller_details
+            when "2"
+                puts get_trails_featured(2)
+                controller_details
+            when "3"
+                puts get_trails_featured(3)
+                controller_details
+            when "4"
+                puts get_trails_featured(4)
+                controller_details
+            when "5"
+                puts get_trails_featured(5)
+                controller_details
+            when "Good Input"
+                controller_state
+            else
+                if @input_city != "Exit"
+                    puts " "
+                    puts "Sorry we can't find that city in our database.  Please check the spelling, or use the nearest major city."
+                end
+        end
+        @counter =+ 1
+    end
+
 end
