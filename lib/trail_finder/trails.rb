@@ -25,10 +25,11 @@ class TrailFinder::Get_Trails
         puts "-Found #{trails.count} trails!-"
     end
 
+
     def get_trail_details(choice)
         trails = @trail_data["trails"].map {|trails| trails}
-        output = trails.each.with_index(1) do |trail, i|
-            if i == choice
+        output = trails.select.with_index(1) do |trail, i|
+            if i == choice.to_i
             puts " "
             puts "//// #{trail["name"]} ////"
             puts "Location: #{trail["location"]}"
@@ -41,8 +42,26 @@ class TrailFinder::Get_Trails
             puts "URL: #{trail["url"]}"
             end
         end
-        puts output
     end
+
+    # def get_trail_details(choice)
+    #     trails = @trail_data["trails"].map {|trails| trails}
+    #     output = trails.select.with_index(1) do |trail, i|
+    #         if i == choice
+    #         puts " "
+    #         puts "//// #{trail["name"]} ////"
+    #         puts "Location: #{trail["location"]}"
+    #         puts "Difficulty: #{trail["difficulty"]}"
+    #         puts "Star Rating: #{trail["stars"]}"
+    #         puts "Length in Miles: #{trail["length"]}"
+    #         puts "Ascent in Feet: #{trail["ascent"]}"
+    #         puts "Descent in Feet: #{trail["descent"]}"
+    #         puts "Summary: #{trail["summary"]}"
+    #         puts "URL: #{trail["url"]}"
+    #         end
+    #     puts output
+    #     end
+    # end
 
 end
 

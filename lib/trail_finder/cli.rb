@@ -1,5 +1,5 @@
 #CLI Controller
-
+require "pry"
 class TrailFinder::CLI
 
     #main method runs the program
@@ -57,31 +57,29 @@ class TrailFinder::CLI
         city = @f_cities[input].split(",")[0]
         state = @f_cities[input].split(", ")[1]
         location = TrailFinder::Coordinates.new(city, state)
-        # location.get_lat_lon
         lat = location.get_lat
         lon = location.get_lon
-        trails = TrailFinder::Get_Trails.new(lat, lon)
-        trails.get_trail_list
+        @trails_list = TrailFinder::Get_Trails.new(lat, lon)
+        @trails_list.get_trail_list
     end
 
     def get_trails(city, state, distance)
         location = TrailFinder::Coordinates.new(city, state)
-        # location.get_lat_lon
         lat = location.get_lat
         lon = location.get_lon
-        trails = TrailFinder::Get_Trails.new(lat, lon, distance)
-        trails.get_trail_list
+        @trails_list = TrailFinder::Get_Trails.new(lat, lon, distance)
+        @trails_list.get_trail_list
     end
 
     def get_trail_details(choice)
-        
+        puts @trails_list.get_trail_details(choice)
+        puts " "
     end
 
     def controller_state
         puts "What State is the city in?"
         @input_state = gets.strip.split.map(&:capitalize).join(" ")
         location = TrailFinder::Coordinates.new(@input_city2, @input_state)
-        # location.get_lat_lon
         if location.read_coordinates == []
             puts " "
             puts "We couldn't find #{@input_city2}, #{@input_state} in our database.  Try again or enter the nearest major city."
@@ -103,8 +101,16 @@ class TrailFinder::CLI
         input = gets.strip.downcase
         if input == "y"
             puts "Please enter the number of the trail you would like more info on"
-            input = gets.strip.downcase
-            get_trail_details(input)
+            input2 = gets.strip
+            if input2.to_i <1 || input2.to_i >10
+                puts "There wasn't a trail with that number"
+                puts " "
+            else
+                get_trail_details(input2)
+                controller_details
+            end
+        else
+            puts " "
         end 
     end
 
