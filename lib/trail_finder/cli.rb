@@ -53,26 +53,14 @@ class TrailFinder::CLI
         check
     end
 
-    #gets trails for output based on choosing one of the featured trails
-    def get_trails_featured(choice)
-        input = choice.to_i - 1
-        city = @f_cities[input].split(",")[0]
-        state = @f_cities[input].split(", ")[1]
-        location = TrailFinder::Coordinates.new(city, state)
-        lat = location.get_lat
-        lon = location.get_lon
-        @trails_list = TrailFinder::Get_Trails.new(lat, lon)
-        @trails_list.get_trail_list
-    end
-
-    #gets trails for output based on choosing a city, state and search distance
-    def get_trails(city, state = nil, distance= nil)
+    #gets trails for output based on choosing a city, state and search distance.  City can be chosen by either the number of the featured city or by the actual variables via user input
+    def get_trails(city, state = nil, distance = nil)
         if city.to_i.between?(1, 5)
             input = city.to_i - 1
             city_f = @f_cities[input].split(",")[0]
             state_f = @f_cities[input].split(", ")[1]
             location = TrailFinder::Coordinates.new(city_f, state_f)
-        else
+        else 
             location = TrailFinder::Coordinates.new(city, state)
         end
         lat = location.get_lat
@@ -80,15 +68,6 @@ class TrailFinder::CLI
         @trails_list = TrailFinder::Get_Trails.new(lat, lon, distance)
         @trails_list.get_trail_list
     end
-
-    # #gets trails for output based on choosing a city, state and search distance
-    # def get_trails(city, state, distance)
-    #     location = TrailFinder::Coordinates.new(city, state)
-    #     lat = location.get_lat
-    #     lon = location.get_lon
-    #     @trails_list = TrailFinder::Get_Trails.new(lat, lon, distance)
-    #     @trails_list.get_trail_list
-    # end
 
     #gets trail details based on which trail the rider would like more details on.
     def get_trail_details(choice)
@@ -167,16 +146,16 @@ class TrailFinder::CLI
                 puts get_trails(1)
                 controller_details
             when "2"
-                puts get_trails_featured(2)
+                puts get_trails(2)
                 controller_details
             when "3"
-                puts get_trails_featured(3)
+                puts get_trails(3)
                 controller_details
             when "4"
-                puts get_trails_featured(4)
+                puts get_trails(4)
                 controller_details
             when "5"
-                puts get_trails_featured(5)
+                puts get_trails(5)
                 controller_details
             when "Good Input"
                 controller_state
