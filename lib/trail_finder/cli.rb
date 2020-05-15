@@ -101,10 +101,10 @@ class TrailFinder::CLI
         input = gets.strip.downcase
         if input == "y"
             puts "Please enter the number of the trail you would like more info on"
-            input2 = gets.strip
+            input2 = gets.strip.downcase
             if input2.to_i <1 || input2.to_i >10
                 puts "There wasn't a trail with that number"
-                puts " "
+                controller_details
             else
                 get_trail_details(input2)
                 controller_details

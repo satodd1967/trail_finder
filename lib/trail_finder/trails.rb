@@ -2,7 +2,7 @@
 #needs to take in lat and lon and miles based on user input and get back trails
 class TrailFinder::Get_Trails
 
-    attr_accessor :lat, :lon, :distance, :trail_data, :trail_list
+    attr_accessor :lat, :lon, :distance, :trail_data, :trail_list, :trail_count
 
     def initialize(lat, lon, distance = 2)
         @lat = lat
@@ -10,14 +10,15 @@ class TrailFinder::Get_Trails
         @distance = distance
         load_data = TrailFinder::Trail_Scrape.new(lat, lon, distance).data
         @trail_data = load_data
-        @trail_list = []
-        self.get_trail_start
+        @trail_count = []
+        # @trail_list = []
+        # self.get_trail_start
 
     end
 
-    def get_trail_start
-        @trail_list << @trail_data["trails"].map {|trails| trails}
-    end
+    # def get_trail_start
+    #     @trail_list << @trail_data["trails"].map {|trails| trails}
+    # end
 
     def get_trail_list
         trails = @trail_data["trails"].map {|trails| trails}
@@ -28,8 +29,9 @@ class TrailFinder::Get_Trails
             puts "  Difficulty: #{trail["difficulty"]}"
             puts "  Star Rating: #{trail["stars"]}"
         end
+        @trail_count << trails.count
         puts " "
-        puts "-Found #{trails.count} trails!-"
+        puts "-Found #{@trail_count} trails!-"
     end
 
 
