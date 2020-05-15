@@ -106,7 +106,7 @@ class TrailFinder::CLI
     def controller_details
         puts "would you like more details on any of these trails? (y/n)"
         input = gets.strip.downcase
-        if input == "y"
+        if input == "y" || input == "yes"
             puts "Please enter the number of the trail you would like more info on"
             input2 = gets.strip.downcase
             if input2.to_i.between?(1, @trails_list.trail_count)
