@@ -51,26 +51,7 @@ class TrailFinder::Get_Trails
 
 end
 
-
-
-
-# #  This works to pull the individual trail confirms all data is available and working.  Returns the names of all trailse by parameters   
-#     lat = 33.124
-#     lon = -117.080
-#     distance = 5
-#     api_call = "https://www.mtbproject.com/data/get-trails?lat=#{lat}&lon=#{lon}&maxDistance=#{distance}&key=200752494-3cc116808ab25b0826c7c50c3d42c825"
-#     doc = Nokogiri::HTML(open(api_call))
-#     new_doc = JSON.parse(doc)
-#     trails = new_doc["trails"].map {|trails| trails}
-#     output = trails.each do |trail|
-#         puts " "
-#         puts "//// #{trail["name"]} ////"
-#         puts "Location: #{trail["location"]}"
-#         puts "Difficulty: #{trail["difficulty"]}"
-#         puts "Star Rating: #{trail["stars"]}"
-#         puts "Length in Miles: #{trail["length"]}"
-#         puts "Ascent in Feet: #{trail["ascent"]}"
-#         puts "Descent in Feet: #{trail["descent"]}"
-#         puts "Summary: #{trail["summary"]}"
-#         puts "URL: #{trail["url"]}"
-#     end
+# Console Test Data  
+# lat = 33.124
+# lon = -117.080
+# distance = 5
