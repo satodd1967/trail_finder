@@ -34,3 +34,67 @@ Prompts the rider to either exit, search by different parameters, return to the 
     direct to other components
     handle errors
     exit the program
+
+CLI Project User Stories
+
+Ride Hard Crash Less Mountain Bike Trail Finder
+
+Users are Riders
+
+Pain Point
+•	Mountain bike trails are very hard to find.  Once you find them you may or may not know what you are getting into.  Trails have varied terrain, distance and required skill level.
+•	Riders need a resource to be able to find local trails, understand what the trails are like and be able to get directions to those trails
+•	Riders need to be able to find trails in areas where they may be traveling or may want to travel
+
+Overview
+•	The CLI program should be able to pull data from the MTB Project API and return trail information to Riders based on city, state and a corresponding search distance around that city.
+•	The MTB Project API utilizes latitude and longitude as search parameters which is not user friendly.  The public.opendatasoft dataset for the 1000 largest U.S. cities will need to be accessed via API to match user inputs for city and state to the corresponding lat/lon and be built into the MTB Project API.
+•	This will only cover major cities so user messaging will need to account for directing users to utilize the nearest major city if their search results are nil
+
+User Stories
+•	Riders should be greeted with a message that explains what Ride Hard Crash Less is and what their options are for finding trails.
+•	Riders who are just browsing should be presented with a list of featured cities that they can quickly access to find trails and see what information is available through RHCL
+o	These featured cities should be listed numerically, and the Rider should be able to simply enter the corresponding numerical number to access the trails for that area.
+o	The default search distance should be automatically set for these cities to allow quick access and a view to how the program works and what kind of data they can retrieve
+•	Riders should be asked to enter a city
+o	This Rider input should be checked against the API to ensure that it is a valid city.
+o	Case sensitivity should be handled by the program
+o	If the city is invalid the program should prompt the Rider to check their spelling or to enter the nearest major city.
+o	All invalid inputs should loop the program and ask for additional input
+•	Riders should be asked to enter a state
+o	The state should be checked for validity via the city and state combination
+o	If the state or the city and state combination is not valid the Rider should be prompted that the city state combination cannot be found in the database and ask them to check their spelling or to enter the nearest major city.
+•	Riders should be asked to enter a search distance in miles surrounding the city
+o	The program will automatically limit the search to the maximum distance
+o	Other note the MTB project API will only allow a max of 10 results per qry.
+•	Upon valid entry of city, state and distance or the numerical value of a featured city the Rider should be presented with a list of trails.
+o	The trails information should include
+	Trail Name
+	Trail Location
+	Trail Rating – Difficulty
+	Trail star rating from MTB project
+	Trail Length in miles
+	The Ascent in feet
+	The Descent in feet
+	Trail Summary
+	Trail URL
+•	The URL should be clickable to get detailed information and pictures from the web
+•	After the trails have been provided to the Rider the Rider should be prompted to search for more trails or explore the trails in the featured cities
+o	The Program should continue to loop until the Rider is finished researching trails
+•	When the Rider is finished they should be able to enter Exit and the program will thank them and end.
+o	Case sensitivity should be handled by the program
+
+
+Required Classes
+
+Trail_Finder CLI class – This class will be the controller that will actually run different functions of the program
+
+Scraper_city – This class will be responsible for pulling the data for the lat/lon data asscocaited to all major cities
+
+Scraper_trails – This class will be responsible for pulling the trails data from MTB Project
+Coordinates – This class will be responsible for transforming all of the city data into the necessary formats to meet the requirements of the MTB Project API
+
+Get Trails – This class will be responsible for filtering and transforming the data from the MTB Project API for use in the program
+
+
+
