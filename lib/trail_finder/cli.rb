@@ -102,14 +102,18 @@ class TrailFinder::CLI
         if input == "y"
             puts "Please enter the number of the trail you would like more info on"
             input2 = gets.strip.downcase
-            if input2.to_i <1 || input2.to_i >10
-                puts "There wasn't a trail with that number"
-                controller_details
-            else
+            if input2.to_i.between?(1, @trails_list.trail_count)
                 get_trail_details(input2)
                 controller_details
+            else
+                puts "There isn't a trail with that input"
+                puts " "
+                controller_details
             end
+        elsif input == "n"
+            puts ""
         else
+            puts "Sorry didn't understand that."
             puts " "
         end 
     end
@@ -160,5 +164,5 @@ class TrailFinder::CLI
             @counter =+ 1
         end
     end
-binding.pry
+    # binding .pry
 end
