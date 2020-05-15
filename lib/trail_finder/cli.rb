@@ -66,13 +66,29 @@ class TrailFinder::CLI
     end
 
     #gets trails for output based on choosing a city, state and search distance
-    def get_trails(city, state, distance)
-        location = TrailFinder::Coordinates.new(city, state)
+    def get_trails(city, state = nil, distance= nil)
+        if city.to_i.between?(1, 5)
+            input = city.to_i - 1
+            city_f = @f_cities[input].split(",")[0]
+            state_f = @f_cities[input].split(", ")[1]
+            location = TrailFinder::Coordinates.new(city_f, state_f)
+        else
+            location = TrailFinder::Coordinates.new(city, state)
+        end
         lat = location.get_lat
         lon = location.get_lon
         @trails_list = TrailFinder::Get_Trails.new(lat, lon, distance)
         @trails_list.get_trail_list
     end
+
+    # #gets trails for output based on choosing a city, state and search distance
+    # def get_trails(city, state, distance)
+    #     location = TrailFinder::Coordinates.new(city, state)
+    #     lat = location.get_lat
+    #     lon = location.get_lon
+    #     @trails_list = TrailFinder::Get_Trails.new(lat, lon, distance)
+    #     @trails_list.get_trail_list
+    # end
 
     #gets trail details based on which trail the rider would like more details on.
     def get_trail_details(choice)
@@ -148,7 +164,7 @@ class TrailFinder::CLI
             end
             case @input_city
             when "1"
-                puts get_trails_featured(1)
+                puts get_trails(1)
                 controller_details
             when "2"
                 puts get_trails_featured(2)
