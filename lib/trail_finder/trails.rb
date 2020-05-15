@@ -15,8 +15,7 @@ class TrailFinder::Get_Trails
 
     #transforms the data to get the appropriate list of trails and captures the trail count in the output
     def get_trail_list
-        trails = @trail_data["trails"].map {|trails| trails}
-           output = trails.each.with_index(1) do |trail, i|
+        @trail_data.select.with_index(1) do |trail, i|
             puts " "
             puts "#{i}, //// #{trail["name"]} ////"
             puts "  Location: #{trail["location"]}"
@@ -24,86 +23,31 @@ class TrailFinder::Get_Trails
             puts "  Star Rating: #{trail["stars"]}"
         end
         puts " "
-        puts "-Found #{trails.count} trails!-"
+        puts "-Found #{@trail_data.count} trails!-"
     end
 
     #gets a trail count to be used for error handling in the det_details method int eh CLI class
     def trail_count
-        trails = @trail_data["trails"].map {|trails| trails}
-        trails.count
+        @trail_data.count
     end
-
-#     #gets details for a chosen trail and preps them for output
-#     def get_trail_details(choice = nil)
-#         trails = @trail_data["trails"].map {|trails| trails}
-#             if choice == nil
-#                 output = trails.each.with_index(1) do |trail, i|
-#                     puts " "
-#                     puts "#{i}, //// #{trail["name"]} ////"
-#                     puts "  Location: #{trail["location"]}"
-#                     puts "  Difficulty: #{trail["difficulty"]}"
-#                     puts "  Star Rating: #{trail["stars"]}"
-#                     puts " "
-#                     puts "-Found #{trails.count} trails!-"
-#                 end
-#             else
-#                 output = trails.select.with_index(1) do |trail, i|
-#                     if i == choice.to_i
-#                         puts " "
-#                         puts "//// #{trail["name"]} ////"
-#                         puts "Location: #{trail["location"]}"
-#                         puts "Difficulty: #{trail["difficulty"]}"
-#                         puts "Star Rating: #{trail["stars"]}"
-#                         puts "Length in Miles: #{trail["length"]}"
-#                         puts "Ascent in Feet: #{trail["ascent"]}"
-#                         puts "Descent in Feet: #{trail["descent"]}"
-#                         puts "Summary: #{trail["summary"]}"
-#                         puts "URL: #{trail["url"]}"
-#                     end
-#                 end
-#             end
-#         end
-#     end
-
-# end
 
     #gets details for a chosen trail and preps them for output
     def get_trail_details(choice)
-        trails = @trail_data["trails"].map {|trails| trails}
-        output = trails.select.with_index(1) do |trail, i|
+        @trail_data.select.with_index(1) do |trail, i|
             if i == choice.to_i
-            puts " "
-            puts "//// #{trail["name"]} ////"
-            puts "Location: #{trail["location"]}"
-            puts "Difficulty: #{trail["difficulty"]}"
-            puts "Star Rating: #{trail["stars"]}"
-            puts "Length in Miles: #{trail["length"]}"
-            puts "Ascent in Feet: #{trail["ascent"]}"
-            puts "Descent in Feet: #{trail["descent"]}"
-            puts "Summary: #{trail["summary"]}"
-            puts "URL: #{trail["url"]}"
+                puts " "
+                puts "//// #{trail["name"]} ////"
+                puts "Location: #{trail["location"]}"
+                puts "Difficulty: #{trail["difficulty"]}"
+                puts "Star Rating: #{trail["stars"]}"
+                puts "Length in Miles: #{trail["length"]}"
+                puts "Ascent in Feet: #{trail["ascent"]}"
+                puts "Descent in Feet: #{trail["descent"]}"
+                puts "Summary: #{trail["summary"]}"
+                puts "URL: #{trail["url"]}"
             end
         end
     end
-
-    # def get_trail_details(choice)
-    #     trails = @trail_data["trails"].map {|trails| trails}
-    #     output = trails.select.with_index(1) do |trail, i|
-    #         if i == choice
-    #         puts " "
-    #         puts "//// #{trail["name"]} ////"
-    #         puts "Location: #{trail["location"]}"
-    #         puts "Difficulty: #{trail["difficulty"]}"
-    #         puts "Star Rating: #{trail["stars"]}"
-    #         puts "Length in Miles: #{trail["length"]}"
-    #         puts "Ascent in Feet: #{trail["ascent"]}"
-    #         puts "Descent in Feet: #{trail["descent"]}"
-    #         puts "Summary: #{trail["summary"]}"
-    #         puts "URL: #{trail["url"]}"
-    #         end
-    #     puts output
-    #     end
-    # end
 
 end
 

@@ -11,12 +11,13 @@ class TrailFinder::Trail_Scrape
         @data = {}
         self.api_call
     end
-    
+
     #pulls the data from the api and then json parses it into a usable hash and then stores it in the @doc instance variable
     def api_call
         api_call = "https://www.mtbproject.com/data/get-trails?lat=#{@lat}&lon=#{@lon}&maxDistance=#{@distance}&key=200752494-3cc116808ab25b0826c7c50c3d42c825"
         data = Nokogiri::HTML(open(api_call))
-        @data = JSON.parse(data)
+        parse = JSON.parse(data)
+        @data = parse["trails"].map {|trails| trails}
     end
 
 end
