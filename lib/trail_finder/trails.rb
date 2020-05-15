@@ -2,23 +2,18 @@
 #needs to take in lat and lon and miles based on user input and get back trails
 class TrailFinder::Get_Trails
 
-    attr_accessor :lat, :lon, :distance, :trail_data, :trail_list
+    attr_accessor :lat, :lon, :distance, :trail_data
 
+    #initializes a new instance of the class with lat, lon and optional distance data and loads the data from the trail scraper into the instance variable @trail_data
     def initialize(lat, lon, distance = 2)
         @lat = lat
         @lon = lon
         @distance = distance
         load_data = TrailFinder::Trail_Scrape.new(lat, lon, distance).data
         @trail_data = load_data
-        # @trail_list = []
-        # self.get_trail_start
-
     end
 
-    # def get_trail_start
-    #     @trail_list << @trail_data["trails"].map {|trails| trails}
-    # end
-
+    #transforms the data to get the appropriate list of trails and captures the trail count in the output
     def get_trail_list
         trails = @trail_data["trails"].map {|trails| trails}
            output = trails.each.with_index(1) do |trail, i|
@@ -32,12 +27,13 @@ class TrailFinder::Get_Trails
         puts "-Found #{trails.count} trails!-"
     end
 
+    #gets a trail count to be used for error handling in the det_details method int eh CLI class
     def trail_count
         trails = @trail_data["trails"].map {|trails| trails}
         trails.count
     end
 
-
+    #gets details for a chosen trail and preps them for output
     def get_trail_details(choice)
         trails = @trail_data["trails"].map {|trails| trails}
         output = trails.select.with_index(1) do |trail, i|

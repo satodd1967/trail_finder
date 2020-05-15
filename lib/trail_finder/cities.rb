@@ -38,6 +38,7 @@ class TrailFinder::Coordinates
         @coordinates[2].join(" ").split(" ")[1].to_f.round(3).to_s
     end
 
+    #checks that the entered city is actually in the data set
     def city_check(input)
         data = TrailFinder::City_Scrape.doc["records"].map {|arrays| arrays["fields"]}
         cities = data.map {|cities| cities["city"]}

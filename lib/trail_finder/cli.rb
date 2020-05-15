@@ -1,8 +1,7 @@
 #CLI Controller
-require "pry"
 class TrailFinder::CLI
 
-    #main method runs the program
+    #Main message starts and runs the program.  Creates a new instance of the City_Scrape class which loads the city data to be used in session
     def call
         puts "Loading..."
         TrailFinder::City_Scrape.new
@@ -25,7 +24,7 @@ class TrailFinder::CLI
     end
 
 
-    #gets the list of most featured cities and puts them to the terminal
+    #puts out a numbered list of featured cities based on an array
     def featured_cities
         @f_cities = ["Salt Lake City, Utah", "Austin, Texas", "Bentonville, Arkansas", "Denver, Colorado", "Phoenix, Arizona"]
         puts "1. #{@f_cities[0]}"
@@ -35,6 +34,7 @@ class TrailFinder::CLI
         puts "5. #{@f_cities[4]}"
     end
 
+    #puts out a message on the first loop, or after an error that asks the rider for input or gives them an exit option
     def where
         puts " "
         puts "Where would you like to ride? Enter exit at any time to hit the trails."
@@ -46,12 +46,14 @@ class TrailFinder::CLI
         puts "Enter a new city to search! Or enter Exit to hit the trails!"
     end
 
+    #Checks the city input by the rider against the database of cities and lat/lon to see if that city is valid
     def city_true(input)
         coordinates = TrailFinder::Coordinates.new
         check = coordinates.city_check(input)
         check
     end
 
+    #gets trails for output based on choosing one of the featured trails
     def get_trails_featured(choice)
         input = choice.to_i - 1
         city = @f_cities[input].split(",")[0]
@@ -63,6 +65,7 @@ class TrailFinder::CLI
         @trails_list.get_trail_list
     end
 
+    #gets trails for output based on choosing a city, state and search distance
     def get_trails(city, state, distance)
         location = TrailFinder::Coordinates.new(city, state)
         lat = location.get_lat
@@ -71,11 +74,13 @@ class TrailFinder::CLI
         @trails_list.get_trail_list
     end
 
+    #gets trail details based on which trail the rider would like more details on.
     def get_trail_details(choice)
         puts @trails_list.get_trail_details(choice)
         puts " "
     end
 
+    #handles the entry of the riders chosen state
     def controller_state
         puts "What State is the city in?"
         @input_state = gets.strip.split.map(&:capitalize).join(" ")
@@ -89,6 +94,7 @@ class TrailFinder::CLI
         end
     end
 
+    #handles the entry of the riders preferred search distance as well as puts out the trail details to the rider
     def controller_distance
         puts "How far from your city would you like to search"
         @input_distance = gets.strip
@@ -96,6 +102,7 @@ class TrailFinder::CLI
         controller_details
     end
 
+    #handles asking the rider for input on trail details and puts those trail details out to the rider
     def controller_details
         puts "would you like more details on any of these trails? (y/n)"
         input = gets.strip.downcase
@@ -118,10 +125,12 @@ class TrailFinder::CLI
         end 
     end
 
+    #exit message to the rider
     def over
         puts "Thanks for riding with us today!"
     end
 
+    #Main controller that handles the process flow of the program.
     def controller_main
         @input_city = nil
         @input_city2 = nil
@@ -164,5 +173,4 @@ class TrailFinder::CLI
             @counter =+ 1
         end
     end
-    # binding .pry
 end
