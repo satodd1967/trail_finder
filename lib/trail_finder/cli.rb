@@ -160,5 +160,5 @@ class TrailFinder::CLI
             @counter =+ 1
         end
     end
-
+binding.pry
 end
