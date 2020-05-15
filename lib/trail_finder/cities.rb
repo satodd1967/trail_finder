@@ -47,44 +47,4 @@ class TrailFinder::Coordinates
     
 end
 
-#All of the code necessary to pull down the city data
-#     api_call = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=1000-largest-us-cities-by-population-with-geographic-coordinates&q=&rows=1000&sort=-rank&facet=city&facet=state"
-#     doc = Nokogiri::HTML(open(api_call))
-#     new_doc = JSON.parse(doc)
-    
-#  #This works to get the list of available cities 
-#     cities = new_doc["records"].map {|arrays| arrays["fields"]}
-#     data = cities.map {|cities| cities["city"]}
-#     check = data.each {|cities| cities}.include?("New York")
-#     puts check
-
-#This works to get the list of available cities 
-    # new = []
-    # city = "Denver"
-    # state = "Kentucky"
-    # cities = new_doc["records"].map {|arrays| arrays["fields"]}
-    # data  = cities.select {|cities| cities["city"] == city && cities["state"] == state}
-    # if data == []
-    #     puts "got nil"
-    # else
-    #     puts "bullshit"
-    # end
-
-    
-
-
-
-# #This works and pulls all the cties from the list and then breaks them down to the coordinates for the single city
-#     coordinates = []
-#     city = "Denver"
-#     state = "Colorado"
-#     cities = new_doc["records"].map {|arrays| arrays["fields"]}
-#     data  = cities.select {|cities| cities["city"] == city && cities["state"] == state}
-#     data.each do |stuff|
-#         coordinates << stuff["city"]
-#         coordinates << stuff["state"]
-#         coordinates << stuff["coordinates"]
-#     end
-#     puts coordinates[2].join(" ").split(" ")[0].to_f.round(3).to_s
-
 
