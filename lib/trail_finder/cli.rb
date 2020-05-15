@@ -115,8 +115,9 @@ class TrailFinder::CLI
         elsif input == "n"
             puts ""
         else
-            puts "Sorry didn't understand that."
+            puts "Sorry we couldn't find a trail with that input."
             puts " "
+            controller_details
         end 
     end
 
