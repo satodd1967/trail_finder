@@ -33,6 +33,40 @@ class TrailFinder::Get_Trails
         trails.count
     end
 
+#     #gets details for a chosen trail and preps them for output
+#     def get_trail_details(choice = nil)
+#         trails = @trail_data["trails"].map {|trails| trails}
+#             if choice == nil
+#                 output = trails.each.with_index(1) do |trail, i|
+#                     puts " "
+#                     puts "#{i}, //// #{trail["name"]} ////"
+#                     puts "  Location: #{trail["location"]}"
+#                     puts "  Difficulty: #{trail["difficulty"]}"
+#                     puts "  Star Rating: #{trail["stars"]}"
+#                     puts " "
+#                     puts "-Found #{trails.count} trails!-"
+#                 end
+#             else
+#                 output = trails.select.with_index(1) do |trail, i|
+#                     if i == choice.to_i
+#                         puts " "
+#                         puts "//// #{trail["name"]} ////"
+#                         puts "Location: #{trail["location"]}"
+#                         puts "Difficulty: #{trail["difficulty"]}"
+#                         puts "Star Rating: #{trail["stars"]}"
+#                         puts "Length in Miles: #{trail["length"]}"
+#                         puts "Ascent in Feet: #{trail["ascent"]}"
+#                         puts "Descent in Feet: #{trail["descent"]}"
+#                         puts "Summary: #{trail["summary"]}"
+#                         puts "URL: #{trail["url"]}"
+#                     end
+#                 end
+#             end
+#         end
+#     end
+
+# end
+
     #gets details for a chosen trail and preps them for output
     def get_trail_details(choice)
         trails = @trail_data["trails"].map {|trails| trails}
