@@ -1,5 +1,6 @@
 
 #needs to be able to take in a city and return lat and lon to be used in the Get_Trails class
+require "pry"
 class TrailFinder::Coordinates
 
     attr_accessor :city, :state
@@ -22,7 +23,7 @@ class TrailFinder::Coordinates
             @coordinates << items["coordinates"]
         end
     end
-
+    
     #makes the instance variable @coordinates readable
     def read_coordinates
         @coordinates

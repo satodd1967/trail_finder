@@ -1,5 +1,10 @@
 #CLI Controller
+require "pry"
 class TrailFinder::CLI
+
+    def initialize
+        self.colors
+    end
 
     #Main message starts and runs the program.  Creates a new instance of the City_Scrape class which loads the city data to be used in session
     def call
@@ -11,12 +16,18 @@ class TrailFinder::CLI
         over
     end
 
+    def colors
+        @red = "\u001b[31m"
+        @green = "\u001b[32m"
+        @yellow = "\u001b[33m"
+        @reset = "\u001b[0m"
+    end
+
     #puts intro script to the rider
     def intro
         puts " "
-        puts "!!!! RIDE FAST CRASH LESS !!!!"
-        puts " "
-        puts "Welcome Riders!"
+        puts "#{@yellow}!!!! RIDE FAST CRASH LESS !!!!"
+        puts "       Welcome Riders!#{@reset}"
         puts " "
         puts "Ride Fast Crash Less is a tool that allows you to input your city and get back all the best trails in your area."
         puts "Below is a list of featured cities.  You can either choose one of those by inputing the corresponding number or you can enter your local city."
@@ -26,7 +37,9 @@ class TrailFinder::CLI
 
     #puts out a numbered list of featured cities based on an array
     def featured_cities
-        @f_cities = ["Salt Lake City, Utah", "Austin, Texas", "Bentonville, Arkansas", "Denver, Colorado", "Phoenix, Arizona"]
+        cities = TrailFinder::Featured_Cities.new
+        @f_cities = cities.get_featured
+        #  ["Salt Lake City, Utah", "Austin, Texas", "Bentonville, Arkansas", "Denver, Colorado", "Phoenix, Arizona"]
         puts "1. #{@f_cities[0]}"
         puts "2. #{@f_cities[1]}"
         puts "3. #{@f_cities[2]}"
@@ -37,13 +50,13 @@ class TrailFinder::CLI
     #puts out a message on the first loop, or after an error that asks the rider for input or gives them an exit option
     def where
         puts " "
-        puts "Where would you like to ride? Enter exit at any time to hit the trails."
+        puts "#{@green}Where would you like to ride? Enter exit to quit.#{@reset}"
     end
 
     #provides an alternative message on the second loop
     def where_now
-        puts "* Would you like to find more trails? *"
-        puts "Enter a new city to search! Or enter Exit to hit the trails!"
+        puts "#{@green}* Would you like to find more trails? *"
+        puts "Enter a new city to search! Or enter Exit to hit the trails!#{@reset}"
     end
 
     #Checks the city input by the rider against the database of cities and lat/lon to see if that city is valid
@@ -77,12 +90,12 @@ class TrailFinder::CLI
 
     #handles the entry of the riders chosen state
     def controller_state
-        puts "What State is the city in?"
+        puts "#{@green}What State is the city in?#{@reset}"
         @input_state = gets.strip.split.map(&:capitalize).join(" ")
         location = TrailFinder::Coordinates.new(@input_city2, @input_state)
         if location.read_coordinates == []
             puts " "
-            puts "We couldn't find #{@input_city2}, #{@input_state} in our database.  Try again or enter the nearest major city."
+            puts "#{@red}We couldn't find #{@input_city2}, #{@input_state} in our database.  Try again or enter the nearest major city.#{@reset}"
             controller_main
         else
             controller_distance
@@ -91,7 +104,7 @@ class TrailFinder::CLI
 
     #handles the entry of the riders preferred search distance as well as puts out the trail details to the rider
     def controller_distance
-        puts "How far from your city would you like to search"
+        puts "#{@green}How far from your city would you like to search#{@reset}"
         @input_distance = gets.strip
         puts get_trails(@input_city2, @input_state, @input_distance)
         controller_details
@@ -99,23 +112,23 @@ class TrailFinder::CLI
 
     #handles asking the rider for input on trail details and puts those trail details out to the rider
     def controller_details
-        puts "would you like more details on any of these trails? (y/n)"
+        puts "#{@green}would you like more details on any of these trails? (y/n)#{@reset}"
         input = gets.strip.downcase
         if input == "y" || input == "yes"
-            puts "Please enter the number of the trail you would like more info on"
+            puts "#{@green}Please enter the number of the trail you would like more info on#{@reset}"
             input2 = gets.strip.downcase
             if input2.to_i.between?(1, @trails_list.trail_count)
                 get_trail_details(input2)
                 controller_details
             else
-                puts "There isn't a trail with that input"
+                puts "#{@red}There isn't a trail with that input#{@reset}"
                 puts " "
                 controller_details
             end
         elsif input == "n"
             puts ""
         else
-            puts "Sorry we couldn't find a trail with that input."
+            puts "#{@red}Sorry we couldn't find a trail with that input.#{@reset}"
             puts " "
             controller_details
         end 
@@ -123,7 +136,8 @@ class TrailFinder::CLI
 
     #exit message to the rider
     def over
-        puts "Thanks for riding with us today!"
+        puts "#{@yellow}Thanks for riding with us today!#{@reset}"
+        puts " "
     end
 
     #Main controller that handles the process flow of the program.
@@ -163,10 +177,11 @@ class TrailFinder::CLI
             else
                 if @input_city != "Exit"
                     puts " "
-                    puts "Sorry we can't find that city in our database.  Please check the spelling, or use the nearest major city."
+                    puts "#{@red}Sorry we can't find that city in our database.  Please check the spelling, or use the nearest major city.#{@reset}"
                 end
             end
             @counter =+ 1
         end
     end
 end
+
