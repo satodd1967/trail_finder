@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     trail_finder (0.1.0)
+      dotenv
       json
       nokogiri
 
@@ -9,6 +10,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     coderay (1.1.2)
+    dotenv (2.7.5)
     json (2.1.0)
     method_source (1.0.0)
     mini_portile2 (2.4.0)

@@ -44,6 +44,9 @@ class TrailFinder::Get_Trails
                 puts "Ascent in Feet: #{trail["ascent"]}"
                 puts "Descent in Feet: #{trail["descent"]}"
                 puts "Summary: #{trail["summary"]}"
+                puts "Condition: #{trail["conditionStatus"]}"
+                puts "Condition Details: #{trail["conditionDetails"]}"
+                puts "Condition Date: #{trail["conditionDate"]}"
                 puts "URL: #{trail["url"]}"
             end
         end
