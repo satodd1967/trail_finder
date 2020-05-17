@@ -2,6 +2,7 @@
 require "pry"
 class TrailFinder::CLI
 
+    #runs the instance mathod colors to set instance variables for text color manipulation
     def initialize
         self.colors
     end
@@ -20,6 +21,7 @@ class TrailFinder::CLI
         @red = "\u001b[31m"
         @green = "\u001b[32m"
         @yellow = "\u001b[33m"
+        @blue = "\u001b[34m"
         @reset = "\u001b[0m"
     end
 
@@ -128,7 +130,7 @@ class TrailFinder::CLI
         elsif input == "n"
             puts ""
         else
-            puts "#{@red}Sorry we couldn't find a trail with that input.#{@reset}"
+            puts "#{@red}Please enter (y/n).#{@reset}"
             puts " "
             controller_details
         end 
