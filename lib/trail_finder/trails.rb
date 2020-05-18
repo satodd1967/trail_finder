@@ -1,16 +1,20 @@
-    
+require "pry"    
 #needs to take in lat and lon and miles based on user input and get back trails
 class TrailFinder::Get_Trails
 
     attr_accessor :lat, :lon, :distance, :trail_data
 
+    @@list = []
+    
     #initializes a new instance of the class with lat, lon and optional distance data and loads the data from the trail scraper into the instance variable @trail_data
     def initialize(lat, lon, distance = 2)
+        TrailFinder::Get_Trails.destroy
         @lat = lat
         @lon = lon
         @distance = distance
-        load_data = TrailFinder::Trail_Scrape.new(lat, lon, distance).data
-        @trail_data = load_data
+        @trail_data = TrailFinder::Trail_Scrape.new.api_call(lat, lon, distance)
+        @@list << self
+        # @trail_data = TrailFinder::Trail_Scrape.new(lat, lon, distance).data
     end
 
     #transforms the data to get the appropriate list of trails and captures the trail count in the output
@@ -50,6 +54,14 @@ class TrailFinder::Get_Trails
                 puts "URL: #{trail["url"]}"
             end
         end
+    end
+
+    def self.list
+        @@list
+    end
+
+    def self.destroy
+        @@list.clear
     end
 
 end

@@ -41,7 +41,6 @@ class TrailFinder::CLI
     def featured_cities
         cities = TrailFinder::Featured_Cities.new
         @f_cities = cities.get_featured
-        #  ["Salt Lake City, Utah", "Austin, Texas", "Bentonville, Arkansas", "Denver, Colorado", "Phoenix, Arizona"]
         puts "1. #{@f_cities[0]}"
         puts "2. #{@f_cities[1]}"
         puts "3. #{@f_cities[2]}"
@@ -80,13 +79,13 @@ class TrailFinder::CLI
         end
         lat = location.get_lat
         lon = location.get_lon
-        @trails_list = TrailFinder::Get_Trails.new(lat, lon, distance)
-        @trails_list.get_trail_list
+        TrailFinder::Get_Trails.new(lat, lon, distance)
+        TrailFinder::Get_Trails.list[0].get_trail_list
     end
 
     #gets trail details based on which trail the rider would like more details on.
     def get_trail_details(choice)
-        puts @trails_list.get_trail_details(choice)
+        puts TrailFinder::Get_Trails.list[0].get_trail_details(choice)
         puts " "
     end
 
@@ -119,7 +118,7 @@ class TrailFinder::CLI
         if input == "y" || input == "yes"
             puts "#{@green}Please enter the number of the trail you would like more info on#{@reset}"
             input2 = gets.strip.downcase
-            if input2.to_i.between?(1, @trails_list.trail_count)
+            if input2.to_i.between?(1, TrailFinder::Get_Trails.list[0].trail_count)
                 get_trail_details(input2)
                 controller_details
             else
