@@ -1,8 +1,21 @@
+class TrailFinder::CLI
 
+    def call
+       TrailFinder::Trail_Scrape.api_call(33.123, -117.080, 2)
+       puts TrailFinder::Trails.all.first 
+    end
 
-
-
-
+    # def featured_cities
+    #     cities = TrailFinder::Featured_Cities.new
+    #     @f_cities = cities.get_featured
+    #     puts "1. #{@f_cities[0]}"
+    #     puts "2. #{@f_cities[1]}"
+    #     puts "3. #{@f_cities[2]}"
+    #     puts "4. #{@f_cities[3]}"
+    #     puts "5. #{@f_cities[4]}"
+    # end
+         
+end
 
 ################################################################################################################
 # #CLI Controller

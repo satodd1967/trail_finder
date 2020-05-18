@@ -1,4 +1,19 @@
+class TrailFinder::Cities
 
+    attr_accessor :city, :coordinates, :state, :rank, :growth_from_2000_to_2013, :population
+   
+    @@all = []
+
+    def initialize(city_list)
+      city_list.each {|key, value| self.send(("#{key}="), value)}
+      @@all << self
+    end
+
+    def self.all
+        @@all
+    end
+
+end
 
 
 

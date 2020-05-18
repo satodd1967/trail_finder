@@ -33,5 +33,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "nokogiri"
   spec.add_dependency "json"
   spec.add_dependency "dotenv"
+  spec.add_dependency "httparty"
 
 end
