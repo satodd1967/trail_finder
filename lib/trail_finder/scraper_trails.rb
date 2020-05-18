@@ -1,32 +1,30 @@
-#pulls data from teh MTB project api and stores it in an instance variable to be used for rider output
 class TrailFinder::Trail_Scrape
 
-    attr_accessor :lat, :lon, :distance, :data
-
-    def api_call (lat, lon, distance)
+    def api_call(lat, lon, distance)
+        lat = 33.124
+        lon = -117.080
+        distance = 2
         api_call = "https://www.mtbproject.com/data/get-trails?lat=#{lat}&lon=#{lon}&maxDistance=#{distance}&key=200752494-3cc116808ab25b0826c7c50c3d42c825"
-        response = Nokogiri::HTML(open(api_call))
-        parse = JSON.parse(response)
-        data = parse["trails"].map {|trails| trails}
-    end
-
-    ##################################################
-    
-    # #initilizes a new instance of the class with lat, lon and distance variables hits the api call and stores the data in the @data instance variable
-    # def initialize(lat, lon, distance)
-    #     @lat = lat
-    #     @lon = lon
-    #     @distance = distance
-    #     @data = {}
-    #     self.api_call
-    # end
-
-    # #pulls the data from the api and then json parses it into a usable hash and then stores it in the @doc instance variable
-    # def api_call
-    #     api_call = "https://www.mtbproject.com/data/get-trails?lat=#{@lat}&lon=#{@lon}&maxDistance=#{@distance}&key=200752494-3cc116808ab25b0826c7c50c3d42c825"
-    #     data = Nokogiri::HTML(open(api_call))
-    #     parse = JSON.parse(data)
-    #     @data = parse["trails"].map {|trails| trails}
-    # end
-
+            response = Nokogiri::HTML(open(api_call))
+            parse = JSON.parse(response)
+            data = parse["trails"].map {|trails| trails}
+        end
 end
+
+# lat = 33.124
+# lon = -117.080
+
+#################################################################################################################
+# #pulls data from teh MTB project api and stores it in an instance variable to be used for rider output
+# class TrailFinder::Trail_Scrape
+
+#     attr_accessor :lat, :lon, :distance, :data
+
+#     def api_call (lat, lon, distance)
+#         api_call = "https://www.mtbproject.com/data/get-trails?lat=#{lat}&lon=#{lon}&maxDistance=#{distance}&key=200752494-3cc116808ab25b0826c7c50c3d42c825"
+#         response = Nokogiri::HTML(open(api_call))
+#         parse = JSON.parse(response)
+#         data = parse["trails"].map {|trails| trails}
+#     end
+
+# end
