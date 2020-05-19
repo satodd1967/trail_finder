@@ -88,7 +88,7 @@ class TrailFinder::CLI
                 puts "URL: #{trails.url}"
                 puts "***This trail will also open in your browser.  Return here to continue.***"
                 puts " "
-                sleep(2)
+                sleep(1)
                 system("open '#{trails.url}'")
             end
         end
@@ -163,20 +163,8 @@ class TrailFinder::CLI
                 @input_city = "Good Input"
             end
             case @input_city
-            when "1"
-                puts get_trails(1)
-                controller_details
-            when "2"
-                puts get_trails(2)
-                controller_details
-            when "3"
-                puts get_trails(3)
-                controller_details
-            when "4"
-                puts get_trails(4)
-                controller_details
-            when "5"
-                puts get_trails(5)
+            when "1".."5"
+                puts get_trails(@input_city)
                 controller_details
             when "Good Input"
                 controller_state
