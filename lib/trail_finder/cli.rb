@@ -79,6 +79,7 @@ class TrailFinder::CLI
                 puts "Condition Details: #{trails.conditionDetails}"
                 puts "Condition Date: #{trails.conditionDate}"
                 puts "URL: #{trails.url}"
+                puts " "
             end
         end
     end

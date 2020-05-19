@@ -10,5 +10,5 @@ require_relative "trail_finder/trails"
 require_relative "trail_finder/cities"
 require_relative "trail_finder/scraper_city"
 require_relative "trail_finder/scraper_trails"
-require_relative "trail_finder/featured_cities"
+
 
