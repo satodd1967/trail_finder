@@ -60,6 +60,7 @@ class TrailFinder::CLI
             puts "   Location: #{trails.location}"
             puts "   Difficulty: #{trails.difficulty}"
             puts "   Star Rating: #{trails.stars}"
+            puts " "
         end
     end
 
