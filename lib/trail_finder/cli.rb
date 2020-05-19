@@ -1,5 +1,6 @@
 class TrailFinder::CLI
 
+    #initializes the CLI instance with instance variables for the colors used in output as well as the two input variables that are used in all of the controller methods
     def initialize
         @red = "\u001b[31m"
         @green = "\u001b[32m"
@@ -10,6 +11,7 @@ class TrailFinder::CLI
         @input_city2 = nil
     end
 
+    #starts the application by scraping cities from the web and creating instances of them, welcoming the user, showing the featured cities(random cities) and starting the main controller
     def call
         puts "Loading..."
         TrailFinder::City_Scrape.api_call
@@ -30,24 +32,29 @@ class TrailFinder::CLI
         puts " "
     end
 
+    #utilizes the featured cities method in the Cities class to pull back 5 random cities to be featured cities in the app
     def featured_cities
         TrailFinder::Cities.featured_cities
     end
 
+    #opening question for user input on the first loop of the app
     def where
         puts " "
         puts "#{@green}Where would you like to ride? Enter exit to quit.#{@reset}"
     end
 
+    #second input question for the user on the second and additional loops of the app
     def where_now
         puts "#{@green}* Would you like to find more trails? *"
         puts "Enter a new city to search! Or enter Exit to hit the trails!#{@reset}"
     end
 
+    #checks to make sure that the city that the user input is in the database of cities and is valid
     def city_true(input)
         TrailFinder::Cities.all.map {|cities| cities.city}.include?(input)
     end
 
+    #scrapes trails from the web based on the user either choosing a featured city or entering a city, state and search distance.
     def get_trails(city, state = nil, distance = nil)
         item = TrailFinder::Cities.get_city(city, state, distance)
         TrailFinder::Trails.destroy
@@ -62,6 +69,7 @@ class TrailFinder::CLI
         end
     end
 
+    #gets additional information on the user selected trail and also opens the corresponding trail page on the MTB Project
     def get_trail_details(choice)
         TrailFinder::Trails.all.select.with_index(1) do |trails, i|
             if i == choice.to_i
@@ -78,14 +86,15 @@ class TrailFinder::CLI
                 puts "Condition Details: #{trails.conditionDetails}"
                 puts "Condition Date: #{trails.conditionDate}"
                 puts "URL: #{trails.url}"
+                puts "***This trail will also open in your browser.  Return here to continue.***"
                 puts " "
-                puts "-This trail will also open in your browser.  Return here to continue.-"
                 sleep(2)
                 system("open '#{trails.url}'")
             end
         end
     end
 
+    #checks to make sure that the valid city selection and the state input make a valid city and state combination for the app
     def controller_state
         puts "#{@green}What State is the city in?#{@reset}"
         @input_state = gets.strip.split.map(&:capitalize).join(" ")
@@ -99,6 +108,7 @@ class TrailFinder::CLI
         end
     end
 
+    #takes in the user input for search distance and then outputs the results to the user
     def controller_distance
         puts "#{@green}How far from your city would you like to search#{@reset}"
         @input_distance = gets.strip
@@ -106,6 +116,7 @@ class TrailFinder::CLI
         controller_details
     end
 
+    #takes in user input on a request for additonal trail details and puts the details to the user
     def controller_details
         puts "#{@green}would you like more details on any of these trails? (y/n)#{@reset}"
         input = gets.strip.downcase
@@ -129,11 +140,13 @@ class TrailFinder::CLI
         end 
     end
 
+    #ending message for the user
     def over
         puts "#{@yellow}Thanks for riding with us today!#{@reset}"
         puts " "
     end
 
+    #main controller for the application runs the main program loop and takes in the users initial input
     def controller_main
         @input_city = nil
         @input_city2 = nil

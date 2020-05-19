@@ -3,5 +3,6 @@
 require "bundler/setup"
 require "trail_finder"
 
+#this file is executable and starts the application with a call to the CLI class
 TrailFinder::CLI.new.call
 

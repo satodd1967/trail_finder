@@ -1,7 +1,8 @@
 class TrailFinder::Trail_Scrape
 
+    #pulls trail data from the mtbproject api, parses that data into a usable hash and then pushes that hash to the Trails class to be initialized into individual trail instances
     def self.api_call(lat, lon, distance)
-        url = "https://www.mtbproject.com/data/get-trails?lat=#{lat}&lon=#{lon}&maxDistance=#{distance}&key=200752494-3cc116808ab25b0826c7c50c3d42c825"
+        url = "https://www.mtbproject.com/data/get-trails?lat=#{lat}&lon=#{lon}&maxDistance=#{distance}&key=#{ENV['MTB_KEY']}"
         response = Nokogiri::HTML(open(url))
         parse = JSON.parse(response)
         data = parse["trails"]
