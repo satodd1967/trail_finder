@@ -132,9 +132,9 @@ class TrailFinder::CLI
     def controller_main
         @input_city = nil
         @input_city2 = nil
-        @counter = 0
+        counter = 0
         while @input_city != "Exit"
-            if @counter == 0
+            if counter == 0
                 where
             else
                 where_now
@@ -168,7 +168,7 @@ class TrailFinder::CLI
                     puts "#{@red}Sorry we can't find that city in our database.  Please check the spelling, or use the nearest major city.#{@reset}"
                 end
             end
-            @counter =+ 1
+            counter =+ 1
         end
     end
 
