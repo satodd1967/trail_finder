@@ -6,6 +6,8 @@ class TrailFinder::CLI
         @yellow = "\u001b[33m"
         @blue = "\u001b[34m"
         @reset = "\u001b[0m"
+        @input_city = nil
+        @input_city2 = nil
     end
 
     def call
@@ -77,6 +79,9 @@ class TrailFinder::CLI
                 puts "Condition Date: #{trails.conditionDate}"
                 puts "URL: #{trails.url}"
                 puts " "
+                puts "-This trail will also open in your browser.  Return here to continue.-"
+                sleep(2)
+                system("open '#{trails.url}'")
             end
         end
     end

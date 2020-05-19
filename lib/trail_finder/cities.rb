@@ -32,16 +32,13 @@ class TrailFinder::Cities
         if city.to_i.between?(1, 5)
             input = city.to_i - 1
             item = @@f_cities[input]
-            # lat = @@f_cities[input].coordinates[0]
-            # lon = @@f_cities[input].coordinates[1]
         else 
             item = @@all.select {|cities| cities.city == city && cities.state = state}[0]
-            # lat = city[0].coordinates[0]
-            # lon = city[0].coordinates[1]
         end
         item
     end
 
 end
+
 
 
