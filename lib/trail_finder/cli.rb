@@ -54,15 +54,31 @@ class TrailFinder::CLI
         item = TrailFinder::Cities.get_city(city, state, distance)
         TrailFinder::Trails.destroy
         TrailFinder::Trail_Scrape.api_call(item.coordinates[0], item.coordinates[1], distance)
-        TrailFinder::Trails.all.each.with_index(1) do |trails, i|
-            puts "#{i}. #{trails.name}"
+        TrailFinder::Trails.all.select.with_index(1) do |trails, i|
+            puts " "
+            puts "#{i}. Name: //// #{trails.name} ////"
+            puts "   Location: #{trails.location}"
+            puts "   Difficulty: #{trails.difficulty}"
+            puts "   Star Rating: #{trails.stars}"
         end
     end
 
     def get_trail_details(choice)
         TrailFinder::Trails.all.select.with_index(1) do |trails, i|
             if i == choice.to_i
-                puts "#{trails.name}"
+                puts " "
+                puts "//// #{trails.name} ////"
+                puts "Location: #{trails.location}"
+                puts "Difficulty: #{trails.difficulty}"
+                puts "Star Rating: #{trails.stars}"
+                puts "Length in Miles: #{trails.length}"
+                puts "Ascent in Feet: #{trails.ascent}"
+                puts "Descent in Feet: #{trails.descent}"
+                puts "Summary: #{trails.summary}"
+                puts "Condition: #{trails.conditionStatus}"
+                puts "Condition Details: #{trails.conditionDetails}"
+                puts "Condition Date: #{trails.conditionDate}"
+                puts "URL: #{trails.url}"
             end
         end
     end
