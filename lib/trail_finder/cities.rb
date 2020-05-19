@@ -38,7 +38,8 @@ class TrailFinder::Cities
             input = city.to_i - 1
             item = @@f_cities[input]
         else 
-            item = @@all.select {|cities| cities.city == city && cities.state = state}[0]
+            item = @@all.find {|cities| cities.city == city && cities.state = state}
+            # item = @@all.select {|cities| cities.city == city && cities.state = state}[0]
         end
         item
     end
