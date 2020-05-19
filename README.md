@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-You will need to add your own api token to the code to make it usable.  Overuse of the gem will result in being denied access.
+You will need to add your own api token to the code in a .env dotnev file to make it usable.  Overuse of the gem will result in being denied access.
 
 ## Development
 

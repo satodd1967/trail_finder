@@ -39,7 +39,6 @@ class TrailFinder::Cities
             item = @@f_cities[input]
         else 
             item = @@all.find {|cities| cities.city == city && cities.state = state}
-            # item = @@all.select {|cities| cities.city == city && cities.state = state}[0]
         end
         item
     end

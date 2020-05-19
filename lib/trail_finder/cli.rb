@@ -1,3 +1,4 @@
+require "pry"
 class TrailFinder::CLI
 
     #initializes the CLI instance with instance variables for the colors used in output as well as the two input variables that are used in all of the controller methods
@@ -9,6 +10,7 @@ class TrailFinder::CLI
         @reset = "\u001b[0m"
         @input_city = nil
         @input_city2 = nil
+        @input_state = nil
     end
 
     #starts the application by scraping cities from the web and creating instances of them, welcoming the user, showing the featured cities(random cities) and starting the main controller
@@ -98,8 +100,8 @@ class TrailFinder::CLI
     def controller_state
         puts "#{@green}What State is the city in?#{@reset}"
         @input_state = gets.strip.split.map(&:capitalize).join(" ")
-        location = TrailFinder::Cities.all.map {|cities| cities.city == @input_city2 && cities.state == @input_state}
-        if location == []
+        location = TrailFinder::Cities.all.find {|cities| cities.city == @input_city2 && cities.state == @input_state}
+        if location == nil
             puts " "
             puts "#{@red}We couldn't find #{@input_city2}, #{@input_state} in our database.  Try again or enter the nearest major city.#{@reset}"
             controller_main
