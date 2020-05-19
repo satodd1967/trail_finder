@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+You will need to add your own api token to the code to make it usable.  Overuse of the gem will result in being denied access.
 
 ## Development
 
