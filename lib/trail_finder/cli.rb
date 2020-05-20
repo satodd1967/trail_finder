@@ -1,4 +1,4 @@
-require "pry"
+
 class TrailFinder::CLI
 
     #initializes the CLI instance with instance variables for the colors used in output as well as the two input variables that are used in all of the controller methods
