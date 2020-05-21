@@ -73,7 +73,7 @@ class TrailFinder::CLI
     def controller_state
         puts "#{@green}What State is the city in?#{@reset}"
         @input_state = gets.strip.split.map(&:capitalize).join(" ")
-        location = TrailFinder::Cities.all.find {|cities| cities.city == @input_city2 && cities.state == @input_state}
+        location = TrailFinder::Cities.state_check(@input_city2, @input_state)
         if location == nil
             puts " "
             puts "#{@red}We couldn't find #{@input_city2}, #{@input_state} in our database.  Try again or enter the nearest major city.#{@reset}"

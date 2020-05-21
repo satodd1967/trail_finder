@@ -29,8 +29,9 @@ class TrailFinder::Trails
             puts "   Location: #{trails.location}"
             puts "   Difficulty: #{trails.difficulty}"
             puts "   Star Rating: #{trails.stars}"
-            puts " " 
+            puts " "
         end 
+        puts "**Found #{@@all.count} trails!**" 
     end
 
     #Gets a trail from the @@al class variable and then transforms its data into useful output for the CLI
@@ -53,7 +54,7 @@ class TrailFinder::Trails
                 puts "***This trail will also open in your browser.  Return here to continue.***"
                 puts " "
                 sleep(1)
-                system("open '#{trails.url}'")
+                # system("open '#{trails.url}'")
             end
         end
     end

@@ -43,6 +43,11 @@ class TrailFinder::Cities
         item
     end
 
+    #check a city and state combination against the @@all class variable.  If there is a valid combination it is returned otherwise it returns nil
+    def self.state_check(city, state)
+        @@all.find {|cities| cities.city == city && cities.state == state} 
+    end
+
 end
 
 
