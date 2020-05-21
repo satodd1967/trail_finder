@@ -21,5 +21,40 @@ class TrailFinder::Trails
         @@all.clear
     end
 
+    def self.get_trails
+        @@all.select.with_index(1) do |trails, i|
+            puts " "
+            puts "#{i}. Name: //// #{trails.name} ////"
+            puts "   Location: #{trails.location}"
+            puts "   Difficulty: #{trails.difficulty}"
+            puts "   Star Rating: #{trails.stars}"
+            puts " " 
+        end 
+    end
+
+    def self.get_trail_details(choice)
+        @@all.select.with_index(1) do |trails, i|
+            if i == choice.to_i
+                puts " "
+                puts "//// #{trails.name} ////"
+                puts "Location: #{trails.location}"
+                puts "Difficulty: #{trails.difficulty}"
+                puts "Star Rating: #{trails.stars}"
+                puts "Length in Miles: #{trails.length}"
+                puts "Ascent in Feet: #{trails.ascent}"
+                puts "Descent in Feet: #{trails.descent}"
+                puts "Summary: #{trails.summary}"
+                puts "Condition: #{trails.conditionStatus}"
+                puts "Condition Details: #{trails.conditionDetails}"
+                puts "Condition Date: #{trails.conditionDate}"
+                puts "URL: #{trails.url}"
+                puts "***This trail will also open in your browser.  Return here to continue.***"
+                puts " "
+                sleep(1)
+                system("open '#{trails.url}'")
+            end
+        end
+    end
+
 end
 
