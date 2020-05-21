@@ -56,46 +56,17 @@ class TrailFinder::CLI
         TrailFinder::Cities.all.map {|cities| cities.city}.include?(input)
     end
 
-    #scrapes trails from the web based on the user either choosing a featured city or entering a city, state and search distance.
+    #scrapes and put trails from the web based on the user either choosing a featured city or entering a city, state and search distance.
     def get_trails(city, state = nil, distance = nil)
         found_city = TrailFinder::Cities.get_city(city, state, distance)
         TrailFinder::Trails.destroy
         TrailFinder::Trail_Scrape.api_call(found_city.coordinates[0], found_city.coordinates[1], distance)
         TrailFinder::Trails.get_trails
-        # TrailFinder::Trails.all.select.with_index(1) do |trails, i|
-        #     puts " "
-        #     puts "#{i}. Name: //// #{trails.name} ////"
-        #     puts "   Location: #{trails.location}"
-        #     puts "   Difficulty: #{trails.difficulty}"
-        #     puts "   Star Rating: #{trails.stars}"
-        #     puts " "
-        # end
     end
 
     #gets additional information on the user selected trail and also opens the corresponding trail page on the MTB Project
     def get_trail_details(choice)
         TrailFinder::Trails.get_trail_details(choice)
-        # TrailFinder::Trails.all.select.with_index(1) do |trails, i|
-        #     if i == choice.to_i
-        #         puts " "
-        #         puts "//// #{trails.name} ////"
-        #         puts "Location: #{trails.location}"
-        #         puts "Difficulty: #{trails.difficulty}"
-        #         puts "Star Rating: #{trails.stars}"
-        #         puts "Length in Miles: #{trails.length}"
-        #         puts "Ascent in Feet: #{trails.ascent}"
-        #         puts "Descent in Feet: #{trails.descent}"
-        #         puts "Summary: #{trails.summary}"
-        #         puts "Condition: #{trails.conditionStatus}"
-        #         puts "Condition Details: #{trails.conditionDetails}"
-        #         puts "Condition Date: #{trails.conditionDate}"
-        #         puts "URL: #{trails.url}"
-        #         puts "***This trail will also open in your browser.  Return here to continue.***"
-        #         puts " "
-        #         sleep(1)
-        #         system("open '#{trails.url}'")
-        #     end
-        # end
     end
 
     #checks to make sure that the valid city selection and the state input make a valid city and state combination for the app

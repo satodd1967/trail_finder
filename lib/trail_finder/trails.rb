@@ -21,6 +21,7 @@ class TrailFinder::Trails
         @@all.clear
     end
 
+    #Transforms trail data from tha @@all class variable into useful output for the CLI
     def self.get_trails
         @@all.select.with_index(1) do |trails, i|
             puts " "
@@ -32,6 +33,7 @@ class TrailFinder::Trails
         end 
     end
 
+    #Gets a trail from the @@al class variable and then transforms its data into useful output for the CLI
     def self.get_trail_details(choice)
         @@all.select.with_index(1) do |trails, i|
             if i == choice.to_i
