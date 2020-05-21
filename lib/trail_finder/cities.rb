@@ -34,7 +34,7 @@ class TrailFinder::Cities
 
     #provides the appropriate city instance to the get trails method in the cli.  This could be based on a featured city or a user entered city
     def self.get_city(city, state = nil, distance = nil)
-        if city.to_i.between?(1, 5)
+        if city.to_i.between?(1, @@f_cities.count)
             input = city.to_i - 1
             item = @@f_cities[input]
         else 
