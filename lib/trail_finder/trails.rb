@@ -35,9 +35,9 @@ class TrailFinder::Trails
     end
 
     #Gets a trail from the @@al class variable and then transforms its data into useful output for the CLI
-    def self.get_trail_details(choice)
+    def self.get_trail_details(trail_choice)
         @@all.select.with_index(1) do |trails, i|
-            if i == choice.to_i
+            if i == trail_choice.to_i
                 puts " "
                 puts "//// #{trails.name} ////"
                 puts "Location: #{trails.location}"

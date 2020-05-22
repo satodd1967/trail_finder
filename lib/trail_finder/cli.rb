@@ -52,8 +52,8 @@ class TrailFinder::CLI
     end
 
     #checks to make sure that the city that the user input is in the database of cities and is valid
-    def city_true(input)
-        TrailFinder::Cities.all.map {|cities| cities.city}.include?(input)
+    def city_true(test_city)
+        TrailFinder::Cities.all.map {|cities| cities.city}.include?(test_city)
     end
 
     #scrapes and put trails from the web based on the user either choosing a featured city or entering a city, state and search distance.
@@ -65,16 +65,16 @@ class TrailFinder::CLI
     end
 
     #gets additional information on the user selected trail and also opens the corresponding trail page on the MTB Project
-    def get_trail_details(choice)
-        TrailFinder::Trails.get_trail_details(choice)
+    def get_trail_details(trail_choice)
+        TrailFinder::Trails.get_trail_details(trail_choice)
     end
 
     #checks to make sure that the valid city selection and the state input make a valid city and state combination for the app
     def controller_state
         puts "#{@green}What State is the city in?#{@reset}"
         @input_state = gets.strip.split.map(&:capitalize).join(" ")
-        location = TrailFinder::Cities.state_check(@input_city_replaced, @input_state)
-        if location == nil
+        city_state = TrailFinder::Cities.state_check(@input_city_replaced, @input_state)
+        if city_state == nil
             puts " "
             puts "#{@red}We couldn't find #{@input_city_replaced}, #{@input_state} in our database.  Try again or enter the nearest major city.#{@reset}"
             controller_main
@@ -94,19 +94,19 @@ class TrailFinder::CLI
     #takes in user input on a request for additonal trail details and puts the details to the user
     def controller_details
         puts "#{@green}would you like more details on any of these trails? (y/n)#{@reset}"
-        input = gets.strip.downcase
-        if input == "y" || input == "yes"
+        input_y_n = gets.strip.downcase
+        if input_y_n == "y" || input_y_n == "yes"
             puts "#{@green}Please enter the number of the trail you would like more info on#{@reset}"
-            input2 = gets.strip.downcase
-            if input2.to_i.between?(1, TrailFinder::Trails.all.count)
-                get_trail_details(input2)
+            trail_selection = gets.strip.downcase
+            if trail_selection.to_i.between?(1, TrailFinder::Trails.all.count)
+                get_trail_details(trail_selection)
                 controller_details
             else
                 puts "#{@red}There isn't a trail with that input#{@reset}"
                 puts " "
                 controller_details
             end
-        elsif input == "n"
+        elsif input_y_n == "n"
             puts ""
         else
             puts "#{@red}Please enter (y/n).#{@reset}"
