@@ -9,7 +9,7 @@ class TrailFinder::CLI
         @blue = "\u001b[34m"
         @reset = "\u001b[0m"
         @input_city = nil
-        @input_city2 = nil
+        @input_city_replaced = nil
         @input_state = nil
     end
 
@@ -73,10 +73,10 @@ class TrailFinder::CLI
     def controller_state
         puts "#{@green}What State is the city in?#{@reset}"
         @input_state = gets.strip.split.map(&:capitalize).join(" ")
-        location = TrailFinder::Cities.state_check(@input_city2, @input_state)
+        location = TrailFinder::Cities.state_check(@input_city_replaced, @input_state)
         if location == nil
             puts " "
-            puts "#{@red}We couldn't find #{@input_city2}, #{@input_state} in our database.  Try again or enter the nearest major city.#{@reset}"
+            puts "#{@red}We couldn't find #{@input_city_replaced}, #{@input_state} in our database.  Try again or enter the nearest major city.#{@reset}"
             controller_main
         else
             controller_distance
@@ -87,7 +87,7 @@ class TrailFinder::CLI
     def controller_distance
         puts "#{@green}How far from your city would you like to search#{@reset}"
         @input_distance = gets.strip
-        puts get_trails(@input_city2, @input_state, @input_distance)
+        puts get_trails(@input_city_replaced, @input_state, @input_distance)
         controller_details
     end
 
@@ -124,7 +124,7 @@ class TrailFinder::CLI
     #main controller for the application runs the main program loop and takes in the users initial input
     def controller_main
         @input_city = nil
-        @input_city2 = nil
+        @input_city_replaced = nil
         counter = 0
         while @input_city != "Exit"
             if counter == 0
@@ -134,7 +134,7 @@ class TrailFinder::CLI
             end
         @input_city = gets.strip.split.map(&:capitalize).join(" ")
             if city_true(@input_city) == true
-                @input_city2 = @input_city
+                @input_city_replaced = @input_city
                 @input_city = "Good Input"
             end
             case @input_city
