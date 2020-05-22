@@ -54,7 +54,7 @@ class TrailFinder::Trails
                 puts "***This trail will also open in your browser.  Return here to continue.***"
                 puts " "
                 sleep(1)
-                # system("open '#{trails.url}'")
+                system("open '#{trails.url}'")
             end
         end
     end

@@ -36,11 +36,11 @@ class TrailFinder::Cities
     def self.get_city(city, state = nil, distance = nil)
         if city.to_i.between?(1, @@featured_cities.count)
             input = city.to_i - 1
-            item = @@featured_cities[input]
+            input_city = @@featured_cities[input]
         else 
-            item = @@all.find {|cities| cities.city == city && cities.state = state}
+            input_city = @@all.find {|cities| cities.city == city && cities.state = state}
         end
-        item
+        input_city
     end
 
     #check a city and state combination against the @@all class variable.  If there is a valid combination it is returned otherwise it returns nil
