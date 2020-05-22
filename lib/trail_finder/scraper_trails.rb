@@ -5,12 +5,9 @@ class TrailFinder::Trail_Scrape
         url = "https://www.mtbproject.com/data/get-trails?lat=#{lat}&lon=#{lon}&maxDistance=#{distance}&key=#{ENV['MTB_KEY']}"
         response = Nokogiri::HTML(open(url))
         parse = JSON.parse(response)
-        data = parse["trails"]
-        data.each do |trails|
+        trail_data = parse["trails"]
+        trail_data.each do |trails|
             TrailFinder::Trails.new(trails)
         end
     end
 end
-
-# lat = 33.124
-# lon = -117.080
