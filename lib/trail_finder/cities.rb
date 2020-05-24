@@ -1,3 +1,4 @@
+require "pry"
 class TrailFinder::Cities
 
     attr_accessor :city, :coordinates, :state, :rank, :growth_from_2000_to_2013, :population
